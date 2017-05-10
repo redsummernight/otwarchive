@@ -19,6 +19,7 @@ Feature: Import Works
       And I should see "No Fandom"
       And I should see "Chose Not To"
       And I should see "Not Rated"
+      And I should see "English"
     When I press "Post"
     Then I should see "Work was successfully posted."
     When I go to the works page
@@ -110,6 +111,7 @@ Feature: Import Works
       And I should not see "Additional Tags:"
       And I should not see "Relationship: Detected 1/Detected 2"
 
+  @work_import_multi_tags_backdate
   Scenario: Importing multiple works with backdating
     When I import the urls
         """
@@ -124,6 +126,7 @@ Feature: Import Works
     Then I should see "Preview"
       And I should see "2010-01-11"
 
+  @work_import_backdate_chapter_index
   Scenario: Importing a new multichapter work with backdating should have correct chapter index dates
     Given basic tags
     And the following activated user exists
@@ -177,12 +180,14 @@ Feature: Import Works
       And I should see "Das Maß aller Dinge" within "h2.title"
       And I should see "Ä Ö Ü é è È É ü ö ä ß ñ"
 
+  @work_import_special_characters_auto_latin
   Scenario: Import a work with special characters (latin-1, autodetect from page encoding)
     When I import "http://www.rbreu.de/otwtest/latin1_specified.html"
     Then I should see "Preview"
       And I should see "Das Maß aller Dinge" within "h2.title"
       And I should see "Ä Ö Ü é è È É ü ö ä ß ñ"
 
+  @work_import_special_characters_man_latin
   Scenario: Import a work with special characters (latin-1, must set manually)
     When I start importing "http://www.rbreu.de/otwtest/latin1_notspecified.html"
       And I select "ISO-8859-1" from "encoding"
@@ -191,6 +196,7 @@ Feature: Import Works
       And I should see "Das Maß aller Dinge" within "h2.title"
       And I should see "Ä Ö Ü é è È É ü ö ä ß ñ"
 
+  @work_import_special_characters_man_cp
   Scenario: Import a work with special characters (cp-1252, must set manually)
     When I start importing "http://rbreu.de/otwtest/cp1252.txt"
       And I select "Windows-1252" from "encoding"
@@ -200,6 +206,7 @@ Feature: Import Works
       And I should see "So—what’s up?"
       And I should see "“Something witty.”"
 
+  @work_import_special_characters_man_utf
   Scenario: Import a work with special characters (utf-8, must overwrite wrong page encoding)
     When I start importing "http://www.rbreu.de/otwtest/utf8_notspecified.html"
       And I select "UTF-8" from "encoding"
@@ -208,6 +215,7 @@ Feature: Import Works
       And I should see "Das Maß aller Dinge" within "h2.title"
       And I should see "Ä Ö Ü é è È É ü ö ä ß ñ"
 
+  @import_efn
   Scenario: Import a chaptered work from an efiction site
   When I import "http://www.scarvesandcoffee.net/viewstory.php?sid=9570"
   Then I should see "Preview"
@@ -215,8 +223,3 @@ Feature: Import Works
   When I press "Post"
     And I follow "Next Chapter →"
   Then I should see "Chapter 2"
-
-  Scenario: Imported works should be English language by default
-    When I import "http://www.intimations.org/fanfic/idol/Huddling.html"
-    Then I should see "Preview"
-      And I should see "English"

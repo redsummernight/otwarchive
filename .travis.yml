@@ -1,25 +1,14 @@
 language: ruby
 dist: trusty
-cache: bundler
+cache:
+  bundler: true
+  directories:
+  - features/cassette_library
 sudo: required
 env:
   - TEST_GROUP="./script/check_syntax"
   - TEST_GROUP="rspec spec"
-  - TEST_GROUP="cucumber -r features features/admins             -f Ao3Cucumber::Formatter --color"
-  - TEST_GROUP="cucumber -r features features/bookmarks          -f Ao3Cucumber::Formatter --color"
-  - TEST_GROUP="cucumber -r features features/collections        -f Ao3Cucumber::Formatter --color"
-  - TEST_GROUP="cucumber -r features features/comments_and_kudos -f Ao3Cucumber::Formatter --color"
-  - TEST_GROUP="cucumber -r features features/gift_exchanges     -f Ao3Cucumber::Formatter --color"
   - TEST_GROUP="cucumber -r features features/importing          -f Ao3Cucumber::Formatter --color"
-  - TEST_GROUP="cucumber -r features features/other_a            -f Ao3Cucumber::Formatter --color"
-  - TEST_GROUP="cucumber -r features features/other_b            -f Ao3Cucumber::Formatter --color"
-  - TEST_GROUP="cucumber -r features features/prompt_memes_a     -f Ao3Cucumber::Formatter --color"
-  - TEST_GROUP="cucumber -r features features/prompt_memes_b     -f Ao3Cucumber::Formatter --color"
-  - TEST_GROUP="cucumber -r features features/prompt_memes_c     -f Ao3Cucumber::Formatter --color"
-  - TEST_GROUP="cucumber -r features features/tag_sets           -f Ao3Cucumber::Formatter --color"
-  - TEST_GROUP="cucumber -r features features/tags_and_wrangling -f Ao3Cucumber::Formatter --color"
-  - TEST_GROUP="cucumber -r features features/users              -f Ao3Cucumber::Formatter --color"
-  - TEST_GROUP="cucumber -r features features/works              -f Ao3Cucumber::Formatter --color"
 rvm:
   - "2.2.5"
 services:
@@ -29,19 +18,8 @@ services:
 script:
   - RAILS_ENV=test bundle exec rake db:schema:load --trace
   - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - travis_retry bundle exec $TEST_GROUP
+  - bundle exec $TEST_GROUP
 before_script:
   - bash script/travis_configure.sh
   - bash script/travis_elasticsearch_upgrade.sh
   - bash script/travis_multiple_redis.sh
-notifications:
-  email:
-    recipients:
-      - otw-coders-extra@transformativeworks.org
-    on_success: change
-    on_failure: always
-  irc:
-   channels:
-     - "irc.freenode.org#otw-dev"
-   on_success: change
-   on_failure: change
