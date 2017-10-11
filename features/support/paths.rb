@@ -124,9 +124,11 @@ module NavigationHelpers
       user_works_path(user_id: $1)
     when /^the "(.*)" work page/
       # TODO: Avoid this in favor of 'the work "title"', and eventually remove.
+      puts "Deprecated: Use 'the work \"title\"' instead of 'the \"title\" work page'"
       work_path(Work.find_by(title: $1))
     when /^the work page with title (.*)/
       # TODO: Avoid this in favor of 'the work "title"', and eventually remove.
+      puts "Deprecated: Use 'the work \"title\"' instead of 'the work page with title ...'"
       work_path(Work.find_by(title: $1))
     when /^the work "(.*?)"$/
       work_path(Work.find_by(title: $1))

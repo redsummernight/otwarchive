@@ -160,11 +160,6 @@ Then /^I should only see matching canonical tags in the autocomplete$/ do
   step %{I should not see "Dean/Castiel" in the autocomplete}
 end
 
-Then /^I should only see matching noncanonical tags in the autocomplete$/ do
-  step %{I should see "Super Awesome" in the autocomplete}
-  step %{I should not see "Supernatural" in the autocomplete}
-end
-
 Then /^the tag autocomplete fields should list only matching canonical tags$/ do
   step %{I enter text in the fandom autocomplete field}
   step %{I should only see matching canonical fandom tags in the autocomplete}
@@ -227,20 +222,12 @@ Then /^the collection item autocomplete field should list matching collections$/
   step %{I should not see "awesome" in the autocomplete}
 end
 
-Given /^a gift exchange for testing autocomplete$/ do
-  step %{I have created the gift exchange "autocomplete"}
-end
-
-When /^I edit the gift exchange for testing autocomplete$/ do
-  visit(edit_collection_gift_exchange_path(Collection.find_by(name: "autocomplete")))
-end
-
-Then(/^the pseud autocomplete should contain "([^\"]*)"$/) do |pseud|
-  results = Pseud.autocomplete_lookup(search_param: pseud, autocomplete_prefix: "autocomplete_pseud").map { |res| Pseud.fullname_from_autocomplete(res) }
-  assert results.include?(pseud)
-end
-
-Then(/^the pseud autocomplete should not contain "([^\"]*)"$/) do |pseud|
-  results = Pseud.autocomplete_lookup(search_param: pseud, autocomplete_prefix: "autocomplete_pseud").map { |res| Pseud.fullname_from_autocomplete(res) }
-  assert !results.include?(pseud)
+Then(/^the pseud autocomplete should( not)? contain "(.*)?"$/) do |negation, pseud|
+  step %{I go to the search people page}
+  step %{I enter "#{pseud}" in the "pseud_autocomplete" autocomplete field}
+  if negation
+    step %{I should not see "#{pseud}" in the autocomplete}
+  else
+    step %{I should see "#{pseud}" in the autocomplete}
+  end
 end

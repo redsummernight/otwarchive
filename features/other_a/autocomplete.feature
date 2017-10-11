@@ -59,21 +59,20 @@ Feature: Display autocomplete for tags
     Then I should see "jb_fletcher" in the autocomplete
       And I should see "robert_stack" in the autocomplete
 
+  @javascript
   Scenario: Pseuds should be added and removed from autocomplete as they are changed
     Given I am logged in as "new_user"
     Then the pseud autocomplete should contain "new_user"
     When I add the pseud "extra"
     Then the pseud autocomplete should contain "extra (new_user)"
     When I change the pseud "extra" to "funny"
-      And I go to my pseuds page
-    Then I should not see "extra"
-      And I should see "funny"
-      And the pseud autocomplete should not contain "extra (new_user)"
+    Then the pseud autocomplete should not contain "extra (new_user)"
       And the pseud autocomplete should contain "funny (new_user)"
     When I delete the pseud "funny"
     Then the pseud autocomplete should not contain "funny (new_user)"
       And the pseud autocomplete should contain "new_user"
 
+  @javascript
   Scenario: Pseuds should be added and removed from autocomplete as usernames change
     Given I am logged in as "new_user"
       And I add the pseud "funny"
