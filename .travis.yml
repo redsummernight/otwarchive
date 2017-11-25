@@ -30,19 +30,8 @@ services:
 script:
   - RAILS_ENV=test bundle exec rake db:schema:load --trace
   - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - travis_retry bundle exec $TEST_GROUP
+  - bundle exec $TEST_GROUP
 before_script:
   - bash script/travis_configure.sh
   - bash script/travis_elasticsearch_upgrade.sh
   - bash script/travis_multiple_redis.sh
-notifications:
-  email:
-    recipients:
-      - otw-coders-extra@transformativeworks.org
-    on_success: change
-    on_failure: always
-  irc:
-   channels:
-     - "irc.freenode.org#otw-dev"
-   on_success: change
-   on_failure: change
