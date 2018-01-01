@@ -49,6 +49,17 @@ script:
 after_failure:
   - tail -v -n +1 $TRAVIS_BUILD_DIR/tmp/capybara/*.html
 
+jobs:
+  include:
+    - stage: deploy
+      if: branch = test/travis-deploy-full
+      env: []
+      before_install: skip
+      install: skip
+      before_script: skip
+      script:
+        - echo $TRAVIS_COMMIT
+
 notifications:
   email:
     recipients:
