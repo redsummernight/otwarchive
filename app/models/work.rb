@@ -1035,10 +1035,11 @@ class Work < ApplicationRecord
 
   # returns the top-level comments for all chapters in the work
   def comments
+    chapter_ids = self.chapters.in_order.pluck(:id)
     Comment.where(
-      commentable_type: 'Chapter',
-      commentable_id: self.chapters.pluck(:id)
-    )
+      commentable_type: "Chapter",
+      commentable_id: chapter_ids
+    ).order("FIELD(commentable_id, #{chapter_ids.join(',')})")
   end
 
   # All comments left by the creators of this work
