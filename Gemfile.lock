@@ -15,6 +15,16 @@ GIT
       activemodel (>= 4.0)
 
 GIT
+  remote: https://github.com/redsummernight/codecov-ruby.git
+  revision: 09a56d65a8e00e52050deed9f44dc2fea38d2d1b
+  ref: 09a56d
+  specs:
+    codecov (0.1.14)
+      json
+      simplecov
+      url
+
+GIT
   remote: https://github.com/stephendolan/google_visualr
   revision: 1c5f087a0c4412e08b5c15fd2593c0e0c311a3ab
   specs:
@@ -128,10 +138,6 @@ GEM
     cliver (0.3.2)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
-    codecov (0.1.10)
-      json
-      simplecov
-      url
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
@@ -490,7 +496,7 @@ DEPENDENCIES
   capybara (~> 2.6.2)
   capybara-screenshot
   cocaine
-  codecov (~> 0.1.10)
+  codecov!
   connection_pool
   css_parser
   cucumber (~> 2.4.0)

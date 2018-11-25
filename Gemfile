@@ -157,7 +157,7 @@ group :test do
   gem 'cucumber-timecop', :require => false
   # Code coverage
   gem 'simplecov', '~> 0.14.0'
-  gem 'codecov', '~> 0.1.10', require: false
+  gem 'codecov', git: 'https://github.com/redsummernight/codecov-ruby.git', ref: '09a56d'
   gem 'email_spec', '1.6.0'
 end
 
