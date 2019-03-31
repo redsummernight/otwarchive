@@ -27,8 +27,11 @@ class CollectionsController < ApplicationController
     if params[:work_id] && (@work = Work.find_by(id: params[:work_id]))
       @collections = @work.approved_collections.by_title.includes(:parent, :moderators, :children, :collection_preference, owners: [:user]).paginate(page: params[:page])
     elsif params[:collection_id] && (@collection = Collection.find_by(name: params[:collection_id]))
-      # TODO Elasticsearch
-      @collections = @collection.children.by_title.includes(:parent, :moderators, :children, :collection_preference, owners: [:user]).paginate(page: params[:page])
+      search = CollectionSearchForm.new(collection_id: @collection.id, page: params[:page])
+      @collections = search.search_results
+      flash_search_warnings(@collections)
+      # TODO includes
+      # @collections = @collection.children.by_title.includes(:parent, :moderators, :children, :collection_preference, owners: [:user]).paginate(page: params[:page])
     elsif params[:user_id] && (@user = User.find_by(login: params[:user_id]))
       # TODO Elasticsearch
       @collections = @user.maintained_collections.by_title.includes(:parent, :moderators, :children, :collection_preference, owners: [:user]).paginate(page: params[:page])

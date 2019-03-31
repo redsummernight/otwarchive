@@ -15,7 +15,7 @@ class CollectionIndexer < Indexer
     }
   end
 
-  def document
+  def document(object)
     object.as_json(
       root: false,
       only: %i[

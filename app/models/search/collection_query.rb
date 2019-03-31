@@ -12,19 +12,22 @@ class CollectionQuery < Query
   end
 
   def filters
-    [].compact
+    [
+      collection_filter
+    ].compact
   end
 
   def queries
     [].compact
   end
 
-  def sort
-  end
-
   ################
   # FILTERS
   ################
+
+  def collection_filter
+    term_filter(:parent_id, options[:collection_id]) if options[:collection_id].present?
+  end
 
   ################
   # QUERIES
