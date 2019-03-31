@@ -2,10 +2,11 @@ class QueryResult
 
   include Enumerable
 
-  attr_reader :klass, :response, :current_page, :per_page, :error, :notice
+  attr_reader :klass, :relation, :response, :current_page, :per_page, :error, :notice
 
   def initialize(model_name, response, options={})
     @klass = model_name.classify.constantize
+    @relation = @klass
     @response = response
     @current_page = options[:page] || 1
     @per_page = options[:per_page] || ArchiveConfig.ITEMS_PER_PAGE
@@ -20,9 +21,16 @@ class QueryResult
   def items
     return [] if response[:error]
     if @items.nil?
-      @items = klass.load_from_elasticsearch(hits)
+      @items = relation.load_from_elasticsearch(hits)
     end
     @items
+  end
+
+  # Adds includes to the relation that we'll be using when we look up the items
+  # in this search result set. Returns self for easy chaining.
+  def includes(*args)
+    @relation = @relation.includes(*args)
+    self
   end
 
   # Laying some groundwork for making better use of search results
