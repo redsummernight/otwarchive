@@ -16,6 +16,9 @@ class CollectionIndexer < Indexer
   end
 
   def document(object)
+    owner_ids = object.owners.pluck(:id)
+    moderator_ids = object.moderators.pluck(:id)
+
     object.as_json(
       root: false,
       only: %i[
@@ -26,7 +29,11 @@ class CollectionIndexer < Indexer
       anonymous: object.anonymous?,
       closed: object.closed?,
       moderated: object.moderated?,
-      unrevealed: object.unrevealed?
+      unrevealed: object.unrevealed?,
+
+      owner_ids: owner_ids,
+      moderator_ids: moderator_ids,
+      maintainer_ids: (owner_ids + moderator_ids).uniq
     )
   end
 end
