@@ -2,12 +2,13 @@ class Indexer
 
   BATCH_SIZE = 1000
   INDEXERS_FOR_CLASS = {
-    "Work" => %w(WorkIndexer BookmarkedWorkIndexer),
-    "Bookmark" => %w(BookmarkIndexer),
-    "Tag" => %w(TagIndexer),
-    "Pseud" => %w(PseudIndexer),
-    "Series" => %w(BookmarkedSeriesIndexer),
-    "ExternalWork" => %w(BookmarkedExternalWorkIndexer)
+    "Work" => %w[WorkIndexer BookmarkedWorkIndexer],
+    "Bookmark" => %w[BookmarkIndexer],
+    "Tag" => %w[TagIndexer],
+    "Pseud" => %w[PseudIndexer],
+    "Series" => %w[BookmarkedSeriesIndexer],
+    "ExternalWork" => %w[BookmarkedExternalWorkIndexer],
+    "Collection" => %w[CollectionIndexer]
   }.freeze
 
   delegate :klass, :index_name, :document_type, to: :class
@@ -191,5 +192,4 @@ class Indexer
   def document_id(id)
     id
   end
-
 end

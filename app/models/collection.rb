@@ -1,5 +1,6 @@
 class Collection < ApplicationRecord
   include ActiveModel::ForbiddenAttributesProtection
+  include Searchable
   include UrlHelpers
   include WorksOwner
 

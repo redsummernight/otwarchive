@@ -3,26 +3,36 @@
 namespace :search do
   BATCH_SIZE = 1000
 
-  desc 'Reindex tags'
+  desc "Reindex tags"
   task(index_tags: :environment) do
     TagIndexer.index_all
   end
-  desc 'Reindex pseuds'
+
+  desc "Reindex pseuds"
   task(index_pseuds: :environment) do
     PseudIndexer.index_all
   end
-  desc 'Reindex works'
+
+  desc "Reindex works"
   task(index_works: :environment) do
     WorkIndexer.index_all
   end
-  desc 'Reindex bookmarks'
+
+  desc "Reindex bookmarks"
   task(index_bookmarks: :environment) do
     BookmarkIndexer.index_all
   end
-  desc 'Reindex all'
+
+  desc "Reindex collections"
+  task(index_collections: :environment) do
+    CollectionIndexer.index_all
+  end
+
+  desc "Reindex all"
   task timed_all: %i[timed_works timed_tags timed_pseud timed_bookmarks] do
   end
-  desc 'Reindex bookmarks'
+
+  desc "Reindex bookmarks"
   task timed_bookmarks: :environment do
     time = ENV['TIME_PERIOD'] || 'NOW() - INTERVAL 1 DAY'
     ExternalWork.where("external_works.updated_at >  #{time}").select(:id).find_in_batches(batch_size: BATCH_SIZE) do |group|
@@ -35,25 +45,36 @@ namespace :search do
       AsyncIndexer.new(TagIndexer, :world).enqueue_ids(group.map(&:id))
     end
   end
-  desc 'Reindex works'
+
+  desc "Reindex works"
   task timed_works: :environment do
     time = ENV['TIME_PERIOD'] || 'NOW() - INTERVAL 1 DAY'
     Work.where("works.revised_at >  #{time}").select(:id).find_in_batches(batch_size: BATCH_SIZE) do |group|
       AsyncIndexer.new(WorkIndexer, :world).enqueue_ids(group.map(&:id))
     end
   end
-  desc 'Reindex tags'
+
+  desc "Reindex tags"
   task timed_tags: :environment  do
     time = ENV['TIME_PERIOD'] || 'NOW() - INTERVAL 1 DAY'
     Tag.where("tags.updated_at >  #{time}").select(:id).find_in_batches(batch_size: BATCH_SIZE) do |group|
       AsyncIndexer.new(TagIndexer, :world).enqueue_ids(group.map(&:id))
     end
   end
-  desc 'Reindex psueds'
+
+  desc "Reindex pseuds"
   task timed_pseud: :environment do
     time = ENV['TIME_PERIOD'] || 'NOW() - INTERVAL 1 DAY'
     Pseud.where("pseuds.updated_at >  #{time}").select(:id).find_in_batches(batch_size: BATCH_SIZE) do |group|
       AsyncIndexer.new(PseudIndexer, :world).enqueue_ids(group.map(&:id))
+    end
+  end
+
+  desc "Reindex collections"
+  task timed_collection: :environment do
+    time = ENV['TIME_PERIOD'] || 'NOW() - INTERVAL 1 DAY'
+    Collection.where("updated_at > #{time}").select(:id).find_in_batches(batch_size: BATCH_SIZE) do |group|
+      AsyncIndexer.new(CollectionIndexer, :world).enqueue_ids(group.map(&:id))
     end
   end
 end
