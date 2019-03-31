@@ -26,13 +26,32 @@ class CollectionQuery < Query
   # SORTING
   ################
 
+  def sort_column
+    @sort_column ||=
+      options[:sort_column].present? ? options[:sort_column] : default_sort_column
+  end
+
+  def sort_direction
+    @sort_direction ||=
+      options[:sort_direction].present? ? options[:sort_direction] : default_sort_direction
+  end
+
+  def default_sort_column
+    "created_at"
+  end
+
+  def default_sort_direction
+    if %w[title].include?(sort_column)
+      "asc"
+    else
+      "desc"
+    end
+  end
+
   def sort
-    column = options[:sort_column].present? ? options[:sort_column] : "title"
-    direction = options[:sort_direction].present? ? options[:sort_direction] : "asc"
-
+    column = sort_column
     column = "title.keyword" if column == "title"
-
-    { column => { order: direction } }
+    { column => { order: sort_direction } }
   end
 
   ################

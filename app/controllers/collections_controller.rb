@@ -26,15 +26,28 @@ class CollectionsController < ApplicationController
   def index
     if params[:work_id] && (@work = Work.find_by(id: params[:work_id]))
       @collections = @work.approved_collections.by_title.includes(:parent, :moderators, :children, :collection_preference, owners: [:user]).paginate(page: params[:page])
+
     elsif params[:collection_id] && (@collection = Collection.find_by(name: params[:collection_id]))
-      search = CollectionSearchForm.new(collection_id: @collection.id, page: params[:page])
+      search = CollectionSearchForm.new(
+        collection_id: @collection.id,
+        sort_column: "title",
+        page: params[:page]
+      )
+
       @collections = search.search_results.includes(:challenge, :children, :collection_preference, :moderators, :owners, :parent)
       flash_search_warnings(@collections)
+
     elsif params[:user_id] && (@user = User.find_by(login: params[:user_id]))
-      search = CollectionSearchForm.new(maintainer_ids: @user.pseuds.pluck(:id), page: params[:page])
+      search = CollectionSearchForm.new(
+        maintainer_ids: @user.pseuds.pluck(:id),
+        sort_column: "title",
+        page: params[:page]
+      )
+
       @collections = search.search_results.includes(:challenge, :children, :collection_preference, :moderators, :owners, :parent)
       flash_search_warnings(@collections)
       @page_subtitle = ts("%{username} - Collections", username: @user.login)
+
     else
       if params[:user_id]
         flash.now[:error] = ts("We couldn't find a user by that name, sorry.")
@@ -45,30 +58,30 @@ class CollectionsController < ApplicationController
       end
       @sort_and_filter = true
 
-      options = {}
-      options[:page] = params[:page] || 1
+      options = params[:collection_filters].present? ? collection_search_params : {}
+      options[:page] = params[:page] if params[:page].present?
       @search = CollectionSearchForm.new(options)
-      @collections = @search.search_results
+      @collections = @search.search_results.includes(:challenge, :children, :collection_preference, :moderators, :owners, :parent)
       flash_search_warnings(@collections)
     end
   end
 
   # display challenges that are currently taking signups
   def list_challenges
-    # TODO Elasticsearch
+    # TODO: Elasticsearch
     @page_subtitle = "Open Challenges"
     @hide_dashboard = true
     @challenge_collections = (Collection.signup_open("GiftExchange").limit(15) + Collection.signup_open("PromptMeme").limit(15))
   end
 
   def list_ge_challenges
-    # TODO Elasticsearch
+    # TODO: Elasticsearch
     @page_subtitle = "Open Gift Exchange Challenges"
     @challenge_collections = Collection.signup_open("GiftExchange").limit(15)
   end
 
   def list_pm_challenges
-    # TODO Elasticsearch
+    # TODO: Elasticsearch
     @page_subtitle = "Open Prompt Meme Challenges"
     @challenge_collections = Collection.signup_open("PromptMeme").limit(15)
   end
@@ -191,4 +204,10 @@ class CollectionsController < ApplicationController
     )
   end
 
+  def collection_search_params
+    params.require(:collection_filters).permit(
+      :title, :fandom, :closed, :moderated, :challenge_type,
+      :sort_column, :sort_direction
+    )
+  end
 end
