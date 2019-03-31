@@ -8,7 +8,8 @@ class CollectionIndexer < Indexer
       collection: {
         properties: {
           challenge_type: {
-            type: "keyword"
+            type: "keyword",
+            null_value: "None"
           },
           created_at: {
             type: "date"

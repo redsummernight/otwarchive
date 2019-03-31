@@ -93,20 +93,20 @@
       <dt><%= ts("Collection Type") %></dt>
       <dd>
         <ul>
-            <%= f.label :challenge_type, value: "gift_exchange" do %>
-              <%= f.radio_button :challenge_type, "gift_exchange" %>
+            <%= f.label :challenge_type, value: "GiftExchange" do %>
+              <%= f.radio_button :challenge_type, "GiftExchange" %>
               <%= label_indicator_and_text(ts("Gift Exchange Challenge")) %>
             <% end %>
           </li>
           <li>
-            <%= f.label :challenge_type, value: "prompt_meme" do %>
-              <%= f.radio_button :challenge_type, "prompt_meme" %>
+            <%= f.label :challenge_type, value: "PromptMeme" do %>
+              <%= f.radio_button :challenge_type, "PromptMeme" %>
               <%= label_indicator_and_text(ts("Prompt Meme Challenge")) %>
             <% end %>
           </li>
           <li>
-            <%= f.label :challenge_type, value: "no_challenge" do %>
-              <%= f.radio_button :challenge_type, "no_challenge" %>
+            <%= f.label :challenge_type, value: "None" do %>
+              <%= f.radio_button :challenge_type, "None" %>
               <%= label_indicator_and_text(ts("No Challenge")) %>
             <% end %>
           </li>

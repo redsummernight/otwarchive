@@ -13,8 +13,11 @@ class CollectionQuery < Query
 
   def filters
     [
+      challenge_type_filter,
+      closed_filter,
       collection_filter,
-      maintainer_filter
+      maintainer_filter,
+      moderated_filter
     ].compact
   end
 
@@ -58,12 +61,24 @@ class CollectionQuery < Query
   # FILTERS
   ################
 
+  def challenge_type_filter
+    term_filter(:challenge_type, options[:challenge_type]) if options[:challenge_type].present?
+  end
+
+  def closed_filter
+    term_filter(:closed, bool_value(options[:closed])) if options[:closed].present?
+  end
+
   def collection_filter
     term_filter(:parent_id, options[:collection_id]) if options[:collection_id].present?
   end
 
   def maintainer_filter
     terms_filter(:maintainer_ids, options[:maintainer_ids]) if options[:maintainer_ids].present?
+  end
+
+  def moderated_filter
+    term_filter(:moderated, bool_value(options[:moderated])) if options[:moderated].present?
   end
 
   ################
