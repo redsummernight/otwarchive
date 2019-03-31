@@ -9,6 +9,15 @@ class CollectionIndexer < Indexer
         properties: {
           challenge_type: {
             type: "keyword"
+          },
+          created_at: {
+            type: "date"
+          },
+          title: {
+            type: "text",
+            fields: {
+              keyword: { type: "keyword" }
+            }
           }
         }
       }

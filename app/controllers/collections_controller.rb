@@ -30,12 +30,10 @@ class CollectionsController < ApplicationController
       search = CollectionSearchForm.new(collection_id: @collection.id, page: params[:page])
       @collections = search.search_results.includes(:challenge, :children, :collection_preference, :moderators, :owners, :parent)
       flash_search_warnings(@collections)
-      # TODO sort by title
     elsif params[:user_id] && (@user = User.find_by(login: params[:user_id]))
       search = CollectionSearchForm.new(maintainer_ids: @user.pseuds.pluck(:id), page: params[:page])
       @collections = search.search_results.includes(:challenge, :children, :collection_preference, :moderators, :owners, :parent)
       flash_search_warnings(@collections)
-      # TODO sort by title
       @page_subtitle = ts("%{username} - Collections", username: @user.login)
     else
       if params[:user_id]
