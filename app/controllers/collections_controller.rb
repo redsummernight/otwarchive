@@ -27,8 +27,10 @@ class CollectionsController < ApplicationController
     if params[:work_id] && (@work = Work.find_by(id: params[:work_id]))
       @collections = @work.approved_collections.by_title.includes(:parent, :moderators, :children, :collection_preference, owners: [:user]).paginate(page: params[:page])
     elsif params[:collection_id] && (@collection = Collection.find_by(name: params[:collection_id]))
+      # TODO Elasticsearch
       @collections = @collection.children.by_title.includes(:parent, :moderators, :children, :collection_preference, owners: [:user]).paginate(page: params[:page])
     elsif params[:user_id] && (@user = User.find_by(login: params[:user_id]))
+      # TODO Elasticsearch
       @collections = @user.maintained_collections.by_title.includes(:parent, :moderators, :children, :collection_preference, owners: [:user]).paginate(page: params[:page])
       @page_subtitle = ts("%{username} - Collections", username: @user.login)
     else
@@ -39,6 +41,7 @@ class CollectionsController < ApplicationController
       elsif params[:work_id]
         flash.now[:error] = ts("We couldn't find that work.")
       end
+      # TODO Elasticsearch
       @sort_and_filter = true
       params[:collection_filters] ||= {}
       params[:sort_column] = "collections.created_at" if !valid_sort_column(params[:sort_column], 'collection')
@@ -50,17 +53,20 @@ class CollectionsController < ApplicationController
 
   # display challenges that are currently taking signups
   def list_challenges
+    # TODO Elasticsearch
     @page_subtitle = "Open Challenges"
     @hide_dashboard = true
     @challenge_collections = (Collection.signup_open("GiftExchange").limit(15) + Collection.signup_open("PromptMeme").limit(15))
   end
 
   def list_ge_challenges
+    # TODO Elasticsearch
     @page_subtitle = "Open Gift Exchange Challenges"
     @challenge_collections = Collection.signup_open("GiftExchange").limit(15)
   end
 
   def list_pm_challenges
+    # TODO Elasticsearch
     @page_subtitle = "Open Prompt Meme Challenges"
     @challenge_collections = Collection.signup_open("PromptMeme").limit(15)
   end
