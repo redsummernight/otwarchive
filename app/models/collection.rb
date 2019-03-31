@@ -173,7 +173,7 @@ class Collection < ApplicationRecord
   scope :gift_exchange, -> { where(challenge_type: 'GiftExchange') }
   scope :prompt_meme, -> { where(challenge_type: 'PromptMeme') }
   scope :name_only, -> { select("collections.name") }
-  scope :by_title, -> { order(:title) }
+  scope :by_title, -> { order(:title) } # TODO remove
 
   scope :approved, -> {
     includes(:collection_items)
@@ -472,45 +472,6 @@ class Collection < ApplicationRecord
     approved_collection_items.each {|collection_item| collection_item.notify_of_reveal}
   end
 
-  def self.sorted_and_filtered(sort, filters, page)
-    pagination_args = {page: page}
-
-    # build up the query with scopes based on the options the user specifies
-    query = Collection.top_level
-
-    if !filters[:title].blank?
-      # we get the matching collections out of autocomplete and use their ids
-      ids = Collection.autocomplete_lookup(search_param: filters[:title],
-                autocomplete_prefix: (filters[:closed].blank? ? "autocomplete_collection_all" : (filters[:closed] ? "autocomplete_collection_closed" : "autocomplete_collection_open"))
-             ).map {|result| Collection.id_from_autocomplete(result)}
-      query = query.where("collections.id in (?)", ids)
-    else
-      query = (filters[:closed] == "true" ? query.closed : query.not_closed) if !filters[:closed].blank?
-    end
-    query = (filters[:moderated] == "true" ? query.moderated : query.unmoderated) if !filters[:moderated].blank?
-    if filters[:challenge_type].present?
-      if filters[:challenge_type] == "gift_exchange"
-        query = query.gift_exchange
-      elsif filters[:challenge_type] == "prompt_meme"
-        query = query.prompt_meme
-      elsif filters[:challenge_type] == "no_challenge"
-        query = query.no_challenge
-      end
-    end
-    query = query.order(sort)
-
-    if !filters[:fandom].blank?
-      fandom = Fandom.find_by_name(filters[:fandom])
-      if fandom
-        (fandom.approved_collections & query).paginate(pagination_args)
-      else
-        []
-      end
-    else
-      query.paginate(pagination_args)
-    end
-  end
-
   # Delete current icon (thus reverting to archive default icon)
   def delete_icon=(value)
     @delete_icon = !value.to_i.zero?
@@ -524,5 +485,4 @@ class Collection < ApplicationRecord
   def clear_icon
     self.icon = nil if delete_icon? && !icon.dirty?
   end
-
 end

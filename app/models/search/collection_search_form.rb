@@ -4,6 +4,11 @@ class CollectionSearchForm
   include ActiveModel::Validations
 
   ATTRIBUTES = [
+    :title,
+    :fandom,
+    :closed,
+    :moderated,
+    :challenge_type,
   ]
 
   attr_accessor :options
@@ -23,5 +28,36 @@ class CollectionSearchForm
 
   def search_results
     @searcher.search_results
+  end
+
+  ###############
+  # SORTING
+  ###############
+
+  def sort_options
+    [
+      ["Title", "title"],
+      ["Date Created", "created_at"],
+    ]
+  end
+
+  def sort_column
+    options[:sort_column] || default_sort_column
+  end
+
+  def sort_direction
+    options[:sort_direction] || default_sort_direction
+  end
+
+  def default_sort_column
+    "title"
+  end
+
+  def default_sort_direction
+    if %w[title].include?(sort_column)
+      "asc"
+    else
+      "desc"
+    end
   end
 end

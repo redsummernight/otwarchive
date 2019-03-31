@@ -22,16 +22,15 @@ class CollectionQuery < Query
     [].compact
   end
 
+  ################
+  # SORTING
+  ################
+
   def sort
-    direction = options[:sort_direction]&.downcase
-    case options[:sort_column]
-    when "collections.created_at"
-      column = "created_at"
-      direction ||= "desc"
-    else
-      column = "title.keyword"
-      direction ||= "asc"
-    end
+    column = options[:sort_column].present? ? options[:sort_column] : "title"
+    direction = options[:sort_direction].present? ? options[:sort_direction] : "asc"
+
+    column = "title.keyword" if column == "title"
 
     { column => { order: direction } }
   end

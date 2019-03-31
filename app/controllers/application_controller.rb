@@ -462,8 +462,6 @@ public
       allowed = ['author', 'title', 'date', 'created_at', 'word_count', 'hit_count']
     elsif model.to_s.downcase == 'tag'
       allowed = ['name', 'created_at', 'taggings_count_cache']
-    elsif model.to_s.downcase == 'collection'
-      allowed = ['collections.title', 'collections.created_at']
     elsif model.to_s.downcase == 'prompt'
       allowed = %w(fandom created_at prompter)
     elsif model.to_s.downcase == 'claim'
