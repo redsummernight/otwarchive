@@ -1,5 +1,4 @@
 require:
-  - rubocop-rails
   - rubocop-rspec
 
 # options available at https://github.com/bbatsov/rubocop/blob/master/config/default.yml
