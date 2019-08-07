@@ -7,10 +7,9 @@ describe AbuseReport do
     before(:each) do
       allow(Akismetor).to receive(:spam?).and_return(false)
     end
-
     context "valid reports" do
       it "is valid" do
-        expect(build(:abuse_report)).to be_valid
+        expect(build(:abuse_report)).to be
       end
     end
 
@@ -45,12 +44,11 @@ describe AbuseReport do
     end
 
     context "invalid url" do
-      let(:invalid_url) { build(:abuse_report, url: "nothing before #{ArchiveConfig.APP_URL}") }
+      let(:invalid_url) { build(:abuse_report, url: "nothing at all before #{ArchiveConfig.APP_URL}") }
       it "text before url" do
         expect(invalid_url.save).to be_falsey
         expect(invalid_url.errors[:url]).not_to be_empty
       end
-
       let(:not_from_site) { build(:abuse_report, url: "http://www.google.com/not/our/site") }
       it "url not from our site" do
         expect(not_from_site.save).to be_falsey
