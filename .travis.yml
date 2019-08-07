@@ -30,10 +30,3 @@ script:
 
 after_failure:
   - tail -v -n +1 $TRAVIS_BUILD_DIR/tmp/capybara/*.html
-
-notifications:
-  email:
-    recipients:
-      - otw-coders-extra@transformativeworks.org
-    on_success: change
-    on_failure: always
