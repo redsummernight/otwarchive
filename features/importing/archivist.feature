@@ -182,7 +182,6 @@ Feature: Archivist bulk imports
     Then I should see "Almost Done!"
 
   Scenario: Orphan a work in response to an invite, leaving name on it
-    Given I have an orphan account
     When I import the work "http://ao3testing.dreamwidth.org/593.html" by "randomtestname" with email "random@example.com"
       And the system processes jobs
     Then 1 email should be delivered to "random@example.com"
@@ -199,7 +198,6 @@ Feature: Archivist bulk imports
     Then I should see "randomtestname (orphan_account)"
 
   Scenario: Orphan a work in response to an invite, taking name off it
-    Given I have an orphan account
     When I import the work "http://ao3testing.dreamwidth.org/593.html" by "randomtestname" with email "random@example.com"
       And the system processes jobs
     Then 1 email should be delivered to "random@example.com"

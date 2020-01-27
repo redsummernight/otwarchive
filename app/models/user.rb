@@ -521,7 +521,8 @@ class User < ApplicationRecord
 
   # Create and/or return a user account for holding orphaned works
   def self.fetch_orphan_account
-    orphan_account = User.find_or_create_by(login: "orphan_account")
+    orphan_account = User.find_or_initialize_by(login: "orphan_account")
+    orphan_account.save(validate: false)
     if orphan_account.new_record?
       Rails.logger.fatal "You must have a User with the login 'orphan_account'. Please create one."
     end

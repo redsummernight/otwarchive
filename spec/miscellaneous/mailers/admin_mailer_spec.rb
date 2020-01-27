@@ -87,7 +87,6 @@ describe AdminMailer, type: :mailer do
       before do
         # Users can't delete their account without doing something with their
         # works first. Here we're orphaning the works:
-        create(:user, login: "orphan_account")
         Creatorship.orphan(spam_user.pseuds, spam_user.works, true)
         spam_user.destroy
       end

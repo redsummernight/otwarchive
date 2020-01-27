@@ -107,7 +107,6 @@ Feature: Search pseuds
 
   Scenario: Search by fandom updates when a work is orphaned.
     Given a canonical fandom "Ghost Soup"
-      And I have an orphan account
       And I am logged in as "testuser"
       And I post the work "Drabble Collection" with fandom "Ghost Soup"
       And all indexing jobs have been run

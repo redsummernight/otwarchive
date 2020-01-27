@@ -6,14 +6,13 @@ Feature: Orphan pseud
   # TODO: Expand this to cover a user who has more than one pseud, and check that works on the other pseud don't get orphaned
 
   Scenario: Orphan all works belonging to one pseud
-    Given I have an orphan account
-    And the following activated user exists
+    Given the following activated user exists
       | login         | password   |
       | orphanpseud   | password   |
       And I am logged in as "orphanpseud" with password "password"
     When I post the work "Shenanigans"
       And I post the work "Shenanigans 2"
-    When I follow "orphanpseud" within ".byline"
+      And I follow "orphanpseud" within ".byline"
     Then I should see "Shenanigans 2 by orphanpseud"
     When I follow "Back To Pseuds"
     Then I should see "orphanpseud"
@@ -31,14 +30,13 @@ Feature: Orphan pseud
       And I should not see "orphanpseud" within ".userstuff"
 
   Scenario: Orphan all works belonging to one pseud, add a copy of the pseud to the orphan_account
-    Given I have an orphan account
-    And the following activated user exists
+    Given the following activated user exists
       | login         | password   |
       | orphanpseud   | password   |
       And I am logged in as "orphanpseud" with password "password"
     When I post the work "Shenanigans"
-    When I post the work "Shenanigans 2"
-    When I follow "orphanpseud" within ".byline"
+      And I post the work "Shenanigans 2"
+      And I follow "orphanpseud" within ".byline"
     Then I should see "Shenanigans by orphanpseud"
       And I should see "Shenanigans 2 by orphanpseud"
     When I follow "Back To Pseuds"
@@ -57,8 +55,7 @@ Feature: Orphan pseud
       And I should not see "orphanpseud" within ".userstuff"
 
   Scenario: Orphan a pseud with works co-created by another pseud
-    Given I have an orphan account
-      And I am logged in as "halfandhalf"
+    Given I am logged in as "halfandhalf"
       And I add the pseud "To Be Kept"
       And I add the pseud "To Be Orphaned"
 

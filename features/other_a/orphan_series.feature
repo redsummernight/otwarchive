@@ -4,8 +4,7 @@ Feature: Orphan series
   I want to orphan a series full of works
 
   Background:
-    Given I have an orphan account
-      And I am logged in as "orphaneer"
+    Given I am logged in as "orphaneer"
 
   Scenario: Orphaning a series (remove pseud) should remove all references to the user from the series
 

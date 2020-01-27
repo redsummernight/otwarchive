@@ -4,9 +4,6 @@ describe OrphansController do
   include LoginMacros
   include RedirectExpectationHelper
 
-  # Make sure that we have an orphan account:
-  before { create(:user, login: "orphan_account") }
-
   let!(:user) { create(:user) }
 
   let!(:pseud) { create(:pseud, user: user) }

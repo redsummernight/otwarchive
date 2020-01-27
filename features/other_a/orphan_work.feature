@@ -6,8 +6,7 @@ Feature: Orphan work
 
 
   Background:
-    Given I have an orphan account
-      And the following activated users exists
+    Given the following activated users exists
       | login             | password   | email                     |
       | orphaneer         | password   | orphaneer@foo.com         |
       | author_subscriber | password   | author_subscriber@foo.com |
