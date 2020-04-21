@@ -224,7 +224,7 @@ end
 
 Then(/^the pseud autocomplete should( not)? contain "(.*)?"$/) do |negation, pseud|
   step %{I go to the search people page}
-  step %{I enter "#{pseud}" in the "pseud_autocomplete" autocomplete field}
+  step %{I enter "#{pseud}" in the "Name" autocomplete field}
   if negation
     step %{I should not see "#{pseud}" in the autocomplete}
   else
