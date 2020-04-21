@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 ruby '2.6.5'
 
-gem 'test-unit', '~> 3.2'
-
 gem 'bundler'
 
 gem 'rails', '~> 5.1.6.2'
@@ -139,7 +137,6 @@ group :test do
   gem 'rspec', '~> 3.4'
   gem 'rspec-rails', '~> 3.6.0'
   gem 'pickle'
-  gem 'shoulda'
   gem 'capybara', '~> 2.16.1'
   gem 'database_cleaner', '1.6.0'
   gem 'cucumber', '~> 3.1'
@@ -166,7 +163,6 @@ group :test, :development do
   gem 'pry-byebug'
   gem 'whiny_validation'
   gem 'factory_bot', '~> 5.0.2'
-  gem 'minitest'
 end
 
 group :development do
