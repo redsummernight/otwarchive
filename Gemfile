@@ -167,7 +167,6 @@ end
 
 group :development do
   gem 'factory_bot_rails'
-  gem 'bundler-audit'
   gem 'active_record_query_trace', '~> 1.6', '>= 1.6.1'
 end
 
