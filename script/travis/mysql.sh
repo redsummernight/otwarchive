@@ -16,4 +16,11 @@ cat /etc/mysql/mysql.conf.d/mysqld.cnf
 # The conf change requires a restart
 sudo service mysql restart
 
+echo "This should be READ-COMMITTED"
+mysql -e "SHOW VARIABLES LIKE 'tx_isolation';"
+mysql -e "SHOW VARIABLES LIKE 'tx_isolation';" | grep -s "READ-COMMITTED"
+if [  $? -ne 0 ] ; then
+  exit 1
+fi
+
 mysql -e "CREATE DATABASE otwarchive_test DEFAULT COLLATE utf8mb4_unicode_ci DEFAULT CHARACTER SET utf8mb4;"

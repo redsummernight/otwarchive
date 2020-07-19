@@ -35,15 +35,17 @@ stages:
 jobs:
   include:
     - stage: check_syntax
-      env: [] # disable TEST_GROUP matrix expansion
+      # Disable TEST_GROUP matrix expansion
+      env: []
       script: bash script/check_syntax
 
     - stage: check_docker
-      env: [] # disable TEST_GROUP matrix expansion
+      # Disable TEST_GROUP matrix expansion
+      env: []
       script: echo "DOCKER!!!"
 
-    - # stage: test (default)
-      services:
+    # stage: test (default)
+    - services:
         - mysql
         - redis
         - memcached
@@ -64,6 +66,7 @@ jobs:
         - tail -v -n +1 $TRAVIS_BUILD_DIR/tmp/capybara/*.html
 
     - stage: deploy
-      env: [] # disable TEST_GROUP matrix expansion
+      # Disable TEST_GROUP matrix expansion
+      env: []
       script:
         - echo $TRAVIS_COMMIT
