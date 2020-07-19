@@ -25,18 +25,25 @@ env:
   - TEST_GROUP="cucumber features/users"
   - TEST_GROUP="cucumber features/works"
 
+# Set order of stages
+stages:
+  - check_syntax
+  - check_docker
+  - test
+  - deploy
+
 jobs:
   include:
-    - stage: Check Ruby syntax
-      env: []
+    - stage: check_syntax
+      env: [] # disable TEST_GROUP matrix expansion
       script: bash script/check_syntax
 
-    - stage: Check development Docker setup
-      env: []
+    - stage: check_docker
+      env: [] # disable TEST_GROUP matrix expansion
       script: echo "DOCKER!!!"
 
-    # Default stage "test": one job per TEST_GROUP
-    - services:
+    - # stage: test (default)
+      services:
         - mysql
         - redis
         - memcached
@@ -56,7 +63,7 @@ jobs:
       after_failure:
         - tail -v -n +1 $TRAVIS_BUILD_DIR/tmp/capybara/*.html
 
-    - stage: Deploy to staging
-      env: []
+    - stage: deploy
+      env: [] # disable TEST_GROUP matrix expansion
       script:
         - echo $TRAVIS_COMMIT
