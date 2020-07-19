@@ -35,13 +35,11 @@ stages:
 jobs:
   include:
     - stage: check_syntax
-      # Disable TEST_GROUP matrix expansion
-      env: []
+      env: TEST_GROUP=none
       script: bash script/check_syntax
 
     - stage: check_docker
-      # Disable TEST_GROUP matrix expansion
-      env: []
+      env: TEST_GROUP=none
       script: echo "DOCKER!!!"
 
     # stage: test (default)
@@ -66,7 +64,6 @@ jobs:
         - tail -v -n +1 $TRAVIS_BUILD_DIR/tmp/capybara/*.html
 
     - stage: deploy
-      # Disable TEST_GROUP matrix expansion
-      env: []
+      env: TEST_GROUP=none
       script:
         - echo $TRAVIS_COMMIT
