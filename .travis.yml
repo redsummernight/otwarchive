@@ -1,8 +1,15 @@
 dist: bionic
+
 language: ruby
 cache: bundler
 
 if: tag IS blank
+
+# Dependabot updates already run pull request builds,
+# skip push builds on the source branches.
+branches:
+  except:
+    - /dependabot\/.+/
 
 env:
   - TEST_GROUP="rspec spec/controllers"
@@ -39,8 +46,8 @@ jobs:
         - bash script/check_syntax
         - echo "DOCKER!!!"
 
-    # stage: test (default)
-    - services:
+    - stage: test
+      services:
         - mysql
         - redis
         - memcached
