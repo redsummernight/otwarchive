@@ -27,20 +27,17 @@ env:
 
 # Set order of stages
 stages:
-  - check_syntax
-  - check_docker
+  - check
   - test
   - deploy
 
 jobs:
   include:
-    - stage: check_syntax
+    - stage: check
       env: TEST_GROUP=none
-      script: bash script/check_syntax
-
-    - stage: check_docker
-      env: TEST_GROUP=none
-      script: echo "DOCKER!!!"
+      script:
+        - bash script/check_syntax
+        - echo "DOCKER!!!"
 
     # stage: test (default)
     - services:
