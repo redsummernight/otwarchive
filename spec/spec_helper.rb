@@ -37,7 +37,6 @@ RSpec.configure do |config|
   config.include TaskExampleGroup, type: :task
 
   config.before :suite do
-    DatabaseCleaner.clean_with :truncation
     Rails.application.load_tasks
     Indexer.all.map(&:prepare_for_testing)
     ArchiveWarning.find_or_create_by_name(ArchiveConfig.WARNING_CHAN_TAG_NAME).update(canonical: true)
