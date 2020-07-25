@@ -14,9 +14,6 @@ require 'factory_bot'
 require 'database_cleaner'
 require 'email_spec'
 
-DatabaseCleaner.start
-DatabaseCleaner.clean
-
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -40,9 +37,8 @@ RSpec.configure do |config|
   config.include TaskExampleGroup, type: :task
 
   config.before :suite do
+    DatabaseCleaner.clean_with :truncation
     Rails.application.load_tasks
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean
     Indexer.all.map(&:prepare_for_testing)
     ArchiveWarning.find_or_create_by_name(ArchiveConfig.WARNING_CHAN_TAG_NAME).update(canonical: true)
     ArchiveWarning.find_or_create_by_name(ArchiveConfig.WARNING_NONE_TAG_NAME).update(canonical: true)
@@ -56,16 +52,14 @@ RSpec.configure do |config|
   end
 
   config.before :each do
-    DatabaseCleaner.start
     User.current_user = nil
-    clean_the_database
+    clear_caches
 
     # Assume all spam checks pass by default.
     allow(Akismetor).to receive(:spam?).and_return(false)
   end
 
   config.after :each do
-    DatabaseCleaner.clean
   end
 
   config.after :suite do
@@ -145,7 +139,7 @@ end
 
 RSpec::Matchers.define_negated_matcher :avoid_changing, :change
 
-def clean_the_database
+def clear_caches
   # Now clear memcached
   Rails.cache.clear
 
