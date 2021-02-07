@@ -16,16 +16,6 @@ end
 
 # THEN
 
-Then /^the comment's posted date should be nowish$/ do
-  nowish = Time.zone.now.strftime('%a %d %b %Y %I:%M%p')
-  step %{I should see "#{nowish}" within ".posted.datetime"}
-end
-
-Then /^I should see Last Edited nowish$/ do
-  nowish = Time.zone.now.strftime('%a %d %b %Y %I:%M%p')
-  step "I should see \"Last Edited #{nowish}\""
-end
-
 Then /^I should see the comment form$/ do
   step %{I should see "New comment on"}
 end
