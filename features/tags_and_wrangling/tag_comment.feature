@@ -17,7 +17,6 @@ I'd like to comment on a tag'
     When I post the comment "Shouldn't this be a metatag with Stargate?" on the tag "Stargate Atlantis" via web
     Then I should see "Shouldn't this be a metatag with Stargate?"
       And the comment's posted date should be nowish
-      And I jump in our Delorean and return to the present
 
   Scenario: Edit a comment on a tag
 
@@ -37,7 +36,6 @@ I'd like to comment on a tag'
       And I should see "Yep, we should have a Stargate franchise metatag."
       And I should not see "Shouldn't this be a metatag with Stargate?"
       And I should see Last Edited nowish
-    When I jump in our Delorean and return to the present
 
   Scenario: Multiple comments on a tag increment correctly
 
