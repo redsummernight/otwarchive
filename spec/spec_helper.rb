@@ -32,6 +32,7 @@ RSpec.configure do |config|
     c.syntax = [:should, :expect]
   end
 
+  config.include ActiveSupport::Testing::TimeHelpers
   config.include FactoryBot::Syntax::Methods
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers
