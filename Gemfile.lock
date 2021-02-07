@@ -1066,6 +1066,10 @@ GEM
       nokogiri (~> 1.8)
       rails (>= 4.2, < 7)
     cucumber-tag_expressions (1.1.1)
+    cucumber-timecop (0.0.6)
+      chronic
+      cucumber
+      timecop
     cucumber-wire (0.0.1)
     dalli (2.7.10)
     database_cleaner (1.8.5)
@@ -1338,6 +1342,7 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    timecop (0.9.2)
     timeliness (0.4.4)
     transaction_isolation (1.0.5)
       activerecord (>= 3.0.11)
@@ -1401,12 +1406,12 @@ DEPENDENCIES
   capistrano-gitflow_version (>= 0.0.3)
   capybara (~> 2.16.1)
   capybara-screenshot
-  chronic
   codecov (~> 0.2.0)
   connection_pool
   css_parser
   cucumber (~> 3.1)
   cucumber-rails
+  cucumber-timecop
   dalli
   database_cleaner
   devise

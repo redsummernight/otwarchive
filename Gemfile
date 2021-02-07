@@ -137,11 +137,11 @@ group :test do
   gem 'capybara-screenshot'
   gem 'cucumber-rails', require: false
   gem 'launchy'    # So you can do Then show me the page
-  gem "chronic"
   gem "faker"
   # Record and replay data from external URLs
   gem 'vcr', '~> 3.0', '>= 3.0.1'
   gem 'webmock', '~> 3.7.6'
+  gem 'cucumber-timecop', require: false
   # Code coverage
   gem 'simplecov', '~> 0.14.0'
   gem "codecov", "~> 0.2.0", require: false
