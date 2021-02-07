@@ -486,7 +486,7 @@ describe ChaptersController do
         end
 
         it "updates the work's revision date" do
-          Delorean.time_travel_to("1 day ago") do
+          travel_to 1.day.ago do
             work.touch
           end
 
@@ -677,7 +677,7 @@ describe ChaptersController do
         end
 
         it "updates the work's revision date" do
-          Delorean.time_travel_to("1 day ago") do
+          travel_to 1.day.ago do
             work.touch
           end
 
@@ -853,7 +853,7 @@ describe ChaptersController do
       end
 
       it "updates the work's revision date" do
-        Delorean.time_travel_to("1 day ago") do
+        travel_to 1.day.ago do
           work.touch
         end
 
@@ -946,7 +946,7 @@ describe ChaptersController do
         end
 
         it "updates the work's revision date" do
-          Delorean.time_travel_to("1 day ago") do
+          travel_to 1.day.ago do
             work.touch
           end
 
