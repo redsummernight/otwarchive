@@ -16,8 +16,8 @@ class Admin::AdminUsersController < Admin::BaseController
     @emails = params[:emails].split if params[:emails]
     if @emails.present?
       found_users, not_found_emails, duplicates = User.search_multiple_by_email(@emails)
-      @users = found_users.paginate(page: params[:page] || 1)
-      
+      @users = found_users.includes([:roles]).paginate(page: params[:page] || 1)
+
       if params[:download_button]
         header = [%w(Email Username)]
         found = found_users.map { |u| [u.email, u.login] }
