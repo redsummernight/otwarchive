@@ -71,7 +71,7 @@ jobs:
 
     steps:
       - name: Cancel runs on older commits
-        uses: fkirc/skip-duplicate-actions@v3.3.0
+        uses: styfle/cancel-workflow-action@0.6.0
 
       - name: Check out code
         uses: actions/checkout@v2
