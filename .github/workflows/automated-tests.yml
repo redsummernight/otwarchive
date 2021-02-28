@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      CI: true
       RAILS_ENV: test
       TEST_GROUP: ${{ matrix.tests.command }}
       CUCUMBER_RETRY: 1
@@ -71,6 +70,9 @@ jobs:
             ebook: 'true'
 
     steps:
+      - name: Cancel runs on older commits
+        uses: fkirc/skip-duplicate-actions@v3.3.0
+
       - name: Check out code
         uses: actions/checkout@v2
 
