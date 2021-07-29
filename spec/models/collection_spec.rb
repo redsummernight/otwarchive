@@ -105,7 +105,7 @@ describe Collection do
     end
 
     it "counts bookmarks of all types" do
-      %i[work series_with_a_work external_work].each do |factory|
+      %i[work series external_work].each do |factory|
         item = create(factory)
         create(:bookmark, collections: [collection], bookmarkable: item)
       end

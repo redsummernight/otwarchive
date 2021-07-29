@@ -5,21 +5,18 @@ FactoryBot.define do
     "Awesome Series #{n}"
   end
 
+  factory :serial_work do
+    work
+  end
+
   factory :series do
     title { generate(:series_title) }
+    works { [create(:work)] }
 
-    transient do
-      authors { [build(:pseud)] }
-    end
-
-    after(:build) do |series, evaluator|
-      evaluator.authors.each do |pseud|
+    after(:build) do |series|
+      series.works.first.pseuds.each do |pseud|
         series.creatorships.build(pseud: pseud)
       end
-    end
-
-    factory :series_with_a_work do
-      work_ids { [create(:work).id] }
     end
   end
 end
