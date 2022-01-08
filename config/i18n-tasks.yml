@@ -1,0 +1,10 @@
+# i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
+
+# The "main" locale.
+base_locale: en
+# All available locales are inferred from the data by default.
+
+data:
+  # Locale files or `Find.find` patterns where translations are read from:
+  read:
+    - config/locales/**/%{locale}.yml
