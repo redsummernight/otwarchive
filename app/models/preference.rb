@@ -3,6 +3,7 @@ class Preference < ApplicationRecord
 
   belongs_to :user
   belongs_to :skin
+  belongs_to :locale, foreign_key: "preferred_locale", inverse_of: "preferences"
 
   validates_format_of :work_title_format, with: /^[a-zA-Z0-9_\-,\. ]+$/,
     message: ts("can only contain letters, numbers, spaces, and some limited punctuation (comma, period, dash, underscore)."),
@@ -27,5 +28,9 @@ class Preference < ApplicationRecord
               (skin.is_a?(Skin) && skin.approved_or_owned_by?(user))
 
     errors.add(:base, "You don't have permission to use that skin!")
+  end
+
+  def i18n_locale
+    $rollout.active?(:set_locale_preference, user) ? locale.iso : I18n.default_locale
   end
 end
