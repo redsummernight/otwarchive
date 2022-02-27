@@ -2,8 +2,6 @@ name: Automated Tests
 on:
   push:
     branches:
-      - master
-      - main
   pull_request:
     branches:
       - master
