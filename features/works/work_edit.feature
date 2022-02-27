@@ -190,8 +190,7 @@ Feature: Edit Works
       And I should not see "Fandom: foobar"
 
   Scenario: A work cannot be edited to remove its fandom
-    Given basic tags
-      And I am logged in as a random user
+    Given I am logged in as a random user
       And I post the work "Work 1" with fandom "testing"
     When I edit the work "Work 1"
       And I fill in "Fandoms" with ""
@@ -235,8 +234,7 @@ Feature: Edit Works
     Then I should see "What a title! :< :& :>" in the "Work Title" input
 
   Scenario: When a user changes their co-creator preference, it does not remove them from works they have already co-created.
-    Given basic tags
-      And "Burnham" has the pseud "Michael"
+    Given "Burnham" has the pseud "Michael"
       And "Pike" has the pseud "Christopher"
       And the user "Burnham" allows co-creators
     When I am logged in as "testuser" with password "testuser"
@@ -259,8 +257,7 @@ Feature: Edit Works
       And I should see "Michael (Burnham), testuser"
 
   Scenario: When you have a work with two co-creators, and one of them changes their preference to disallow co-creation, the other should still be able to edit the work and add a third co-creator.
-    Given basic tags
-      And "Burnham" has the pseud "Michael"
+    Given "Burnham" has the pseud "Michael"
       And "Georgiou" has the pseud "Philippa"
       And the user "Burnham" allows co-creators
       And the user "Georgiou" allows co-creators

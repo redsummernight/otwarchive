@@ -25,8 +25,7 @@ Feature: Delete Works
     Then I should not see "All Hell <b>Breaks</b> Loose"
 
   Scenario: Deleting minimally valid work when you have more than one pseud
-    Given basic tags
-      And I am logged in as "newbie"
+    Given I am logged in as "newbie"
       And "newbie" creates the default pseud "Pointless Pseud"
     When I set up the draft "All Hell Breaks Loose" with fandom "Supernatural"
       And I select "Pointless Pseud" from "Creator/Pseud(s)"
@@ -46,8 +45,7 @@ Feature: Delete Works
 
   @javascript
   Scenario: Deleting a work with everything filled in, and we do mean everything
-    Given basic tags
-      And the following activated users exist
+    Given the following activated users exist
         | login          | email                 |
         | coauthor       | coauthor@example.org  |
         | cosomeone      | cosomeone@example.org |

@@ -1,8 +1,6 @@
 ### GIVEN
 
 Given /^a set of alternate universe works for searching$/ do
-  step %{basic tags}
-
   # Create a metatag with a syn
   step %{a canonical freeform "Alternate Universe"}
   step %{a synonym "AU" of the tag "Alternate Universe"}
@@ -40,8 +38,6 @@ Given /^a set of alternate universe works for searching$/ do
 end
 
 Given /^a set of Steve Rogers works for searching$/ do
-  step %{basic tags}
-
   # Create two fandoms
   step %{a canonical fandom "Marvel Cinematic Universe"}
   step %{a canonical fandom "The Avengers (Marvel Movies)"}
@@ -75,8 +71,6 @@ Given /^a set of Steve Rogers works for searching$/ do
 end
 
 Given /^a set of Kirk\/Spock works for searching$/ do
-  step %{basic tags}
-
   # Create a relationship with two syns
   step %{a canonical relationship "James T. Kirk/Spock"}
   step %{a synonym "K/S" of the tag "James T. Kirk/Spock"}
@@ -97,8 +91,6 @@ Given /^a set of Kirk\/Spock works for searching$/ do
 end
 
 Given /^a set of Spock\/Uhura works for searching$/ do
-  step %{basic tags}
-
   # Create a canonical two-character relationship with a syn
   step %{a canonical relationship "Spock/Nyota Uhura"}
   step %{a synonym "Uhura/Spock" of the tag "Spock/Nyota Uhura"}
@@ -118,8 +110,6 @@ Given /^a set of Spock\/Uhura works for searching$/ do
 end
 
 Given /^a set of works with various categories for searching$/ do
-  step %{basic tags}
-
   # Create one work with each category
   %w(Gen Other F/F Multi F/M M/M).each do |category|
     FactoryBot.create(:work, category_string: category)
@@ -132,8 +122,6 @@ Given /^a set of works with various categories for searching$/ do
 end
 
 Given /^a set of works with comments for searching$/ do
-  step %{basic tags}
-
   counts = {
     "Work 1" => 0,
     "Work 2" => 1,
@@ -155,8 +143,6 @@ Given /^a set of works with comments for searching$/ do
 end
 
 Given /^a set of Star Trek works for searching$/ do
-  step %{basic tags}
-
   # Create three related canonical fandoms
   step %{a canonical fandom "Star Trek"}
   step %{a canonical fandom "Star Trek: The Original Series"}
@@ -192,8 +178,6 @@ Given /^a set of Star Trek works for searching$/ do
 end
 
 Given /^a set of works with bookmarks for searching$/ do
-  step %{basic tags}
-
   counts = {
     "Work 1" => 0,
     "Work 2" => 1,
@@ -214,8 +198,6 @@ Given /^a set of works with bookmarks for searching$/ do
 end
 
 Given /^a set of works with various ratings for searching$/ do
-  step %{basic tags}
-
   ratings = [ArchiveConfig.RATING_DEFAULT_TAG_NAME,
              ArchiveConfig.RATING_GENERAL_TAG_NAME,
              ArchiveConfig.RATING_TEEN_TAG_NAME,
@@ -234,8 +216,6 @@ Given /^a set of works with various ratings for searching$/ do
 end
 
 Given /^a set of works with various warnings for searching$/ do
-  step %{basic tags}
-
   warnings = [ArchiveConfig.WARNING_DEFAULT_TAG_NAME,
               ArchiveConfig.WARNING_NONE_TAG_NAME,
               ArchiveConfig.WARNING_VIOLENCE_TAG_NAME,

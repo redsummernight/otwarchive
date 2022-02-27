@@ -7,7 +7,6 @@ Feature: Locking works to archive users only
 
 Scenario: Posting locked work
     Given I am logged in as "fandomer" with password "password"
-      And basic tags
       And I go to the new work page
       And I select "Not Rated" from "Rating"
       And I check "No Archive Warnings Apply"

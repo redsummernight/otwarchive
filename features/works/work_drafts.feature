@@ -8,8 +8,7 @@ Feature: Work Drafts
   Then I should see "The work was not posted. It will be saved here in your drafts for one month, then deleted from the Archive."
 
   Scenario: Creating a work draft, editing it, and saving the changes without posting or previewing and then double check that it is saved and I didn't get the success message erroneously
-  Given basic tags
-    And I am logged in as "persnickety" with password "editingisfun"
+  Given I am logged in as "persnickety" with password "editingisfun"
   When I go to the new work page
   Then I should see "Post New Work"
     And I select "General Audiences" from "Rating"

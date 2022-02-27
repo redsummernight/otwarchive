@@ -9,8 +9,7 @@ Feature: Create Works
   Then I should see "Please log in"
 
   Scenario: Creating a new minimally valid work
-    Given basic tags
-      And I am logged in as "newbie"
+    Given I am logged in as "newbie"
     When I go to the new work page
     Then I should see "Post New Work"
       And I select "Not Rated" from "Rating"
@@ -51,8 +50,7 @@ Feature: Create Works
 
   @javascript
   Scenario: Creating a new work with everything filled in, and we do mean everything
-    Given basic tags
-      And the following activated users exist
+    Given the following activated users exist
         | login          | email                 |
         | coauthor       | coauthor@example.org  |
         | cosomeone      | cosomeone@example.org |
@@ -173,8 +171,7 @@ Feature: Create Works
 
   Scenario: Creating a new work with some maybe-invalid things
   # TODO: needs some more actually invalid things as well
-    Given basic tags
-      And the following activated users exist
+    Given the following activated users exist
         | login          | password    | email                   |
         | coauthor       | something   | coauthor@example.org |
         | badcoauthor    | something   | badcoauthor@example.org |
@@ -211,8 +208,7 @@ Feature: Create Works
       And I should see "1/?"
 
   Scenario: Creating a new work in a new series with some invalid things should return to the new work page with an error message and the newly created series selected
-    Given basic tags
-      And I am logged in as "thorough" with password "something"
+    Given I am logged in as "thorough" with password "something"
     When I set up the draft "Bad Draft"
       And I fill in "Fandoms" with "Invalid12./"
       And I fill in "Work Title" with "/"
@@ -228,8 +224,7 @@ Feature: Create Works
       And I should not see "Remove Work From Series"
 
   Scenario: Creating a new work in an existing series with some invalid things should return to the new work page with an error message and series information still filled in
-    Given basic tags
-      And I am logged in as "thorough" with password "something"
+    Given I am logged in as "thorough" with password "something"
       And I post the work "Work one" as part of a series "My existing series"
     When I set up the draft "Bad Draft"
       And I fill in "Fandoms" with "Invalid12./"
@@ -295,8 +290,7 @@ Feature: Create Works
   Then "This One Stays On Top" should appear before "Backdated"
 
   Scenario: Users must set something as a warning and Author Chose Not To Use Archive Warnings should not be added automatically
-    Given basic tags
-      And I am logged in
+    Given I am logged in
     When I go to the new work page
       And I select "English" from "Choose a language"
       And I fill in "Fandoms" with "Dallas"
@@ -313,8 +307,7 @@ Feature: Create Works
       And I should see "It wasn't my fault, you know."
 
   Scenario: Users can co-create a work with a co-creator who has multiple pseuds
-    Given basic tags
-      And "myself" has the pseud "Me"
+    Given "myself" has the pseud "Me"
       And "herself" has the pseud "Me"
       And the user "myself" allows co-creators
       And the user "herself" allows co-creators
@@ -339,8 +332,7 @@ Feature: Create Works
     Then I should see "Me (myself), testuser"
 
   Scenario: Users can only create a work with a co-creator who allows it.
-    Given basic tags
-      And "Burnham" has the pseud "Michael"
+    Given "Burnham" has the pseud "Michael"
       And "Pike" has the pseud "Christopher"
       And the user "Burnham" allows co-creators
     When I am logged in as "testuser" with password "testuser"

@@ -116,9 +116,9 @@ module Otwarchive
     end
 
     config.after_initialize do
-      AdminSetting.default
-      Locale.default
-      Tag.defaults
+      AdminSetting.default if AdminSetting.table_exists?
+      Locale.default if Locale.table_exists?
+      Tag.defaults if Tag.table_exists?
     end
   end
 end
