@@ -18,7 +18,6 @@ Scenario: tag cloud should only contain top-level canonical freeforms in "No Fan
   Given the following activated tag wrangler exists
     | login  | password    |
     | Enigel | wrangulate! |
-    And basic tags
     And a fandom exists with name: "Firefly", canonical: true
     And a freeform exists with name: "Non-canonical NoFandom", canonical: false
     And a freeform exists with name: "Non-canonical Fandomish", canonical: false

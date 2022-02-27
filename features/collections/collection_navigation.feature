@@ -12,8 +12,7 @@ Feature: Basic collection navigation
   Then I should see "Collection was successfully created."
     And I should see "Works (0)"
     And I should see "Fandoms (0)"
-  Given basic tags
-    And I have a canonical "TV Shows" fandom tag named "New Fandom"
+  Given I have a canonical "TV Shows" fandom tag named "New Fandom"
     And a freeform exists with name: "Free", canonical: true
   When I follow "New Work" within "ul.user.navigation.actions"
     And I select "Not Rated" from "Rating"

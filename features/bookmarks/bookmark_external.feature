@@ -5,8 +5,7 @@ Feature: Create bookmarks of external works
   I want to bookmark some works
 
   Scenario: A user can bookmark an external work using all the Creator's Tags fields (fandoms, rating, category, relationships, character)
-    Given basic tags
-      And mock websites with no content
+    Given mock websites with no content
       And I am logged in as "bookmarker"
       And I am on the new external work page
     When I fill in "URL" with "http://example.org/200"
@@ -29,8 +28,7 @@ Feature: Create bookmarks of external works
       And I should see "Character 4"
 
   Scenario: A user must enter a fandom to create a bookmark on an external work
-    Given basic tags
-      And mock websites with no content
+    Given mock websites with no content
       And I am logged in as "first_bookmark_user"
     When I go to first_bookmark_user's bookmarks page
     Then I should not see "Stuck with You"
@@ -49,7 +47,6 @@ Feature: Create bookmarks of external works
 
   Scenario: A user must enter a valid URL to create a bookmark on an external work
     Given I am logged in as "first_bookmark_user"
-      And the default ratings exist
       And mock websites with no content
     When I go to first_bookmark_user's bookmarks page
     Then I should not see "Stuck with You"
@@ -84,7 +81,6 @@ Feature: Create bookmarks of external works
 
   Scenario Outline: A user can enter a valid non-ASCII URL to create a bookmark on an external work
     Given I am logged in as "first_bookmark_user"
-      And the default ratings exist
       And all pages on the host "<url>" return status 200
     When I am on the new external work page
       And I fill in "URL" with "<url>"
@@ -122,8 +118,7 @@ Feature: Create bookmarks of external works
     Then I should not see "Bookmark External Work"
 
   Scenario: Users can see external works, admins can also see only duplicates
-    Given basic tags
-      And I am logged in
+    Given I am logged in
       # Bookmark the same URL twice
       And I bookmark the external work "External Title"
       And I bookmark the external work "Alternate Title"

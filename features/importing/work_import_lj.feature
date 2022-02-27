@@ -5,8 +5,7 @@ Feature: Import Works from LJ
   I want to create new works by importing them from LJ
   @import_lj
   Scenario: Creating a new work from an LJ story with automatic metadata
-    Given basic tags
-      And a fandom exists with name: "Lewis", canonical: true
+    Given a fandom exists with name: "Lewis", canonical: true
       And I am logged in as "cosomeone"
     When I go to the import page
       And I fill in "urls" with "http://rebecca2525.livejournal.com/3562.html"
@@ -39,8 +38,7 @@ Feature: Import Works from LJ
   # This is to make sure that we don't accidentally strip other tables than
   # LJ metadata tables esp. when there's no LJ metadata table
 
-    Given basic tags
-      And a fandom exists with name: "Lewis", canonical: true
+    Given a fandom exists with name: "Lewis", canonical: true
       And I am logged in as "cosomeone"
     When I go to the import page
       And I fill in "urls" with "http://rebecca2525.livejournal.com/3591.html"
@@ -70,8 +68,7 @@ Feature: Import Works from LJ
 
   @import_lj_no_backdate
   Scenario: Creating a new work from an LJ story without backdating it
-    Given basic tags
-      And I am logged in as a random user
+    Given I am logged in as a random user
     When I go to the import page
       And I fill in "urls" with "http://rebecca2525.livejournal.com/3562.html"
       And I select "English" from "Choose a language"
@@ -93,8 +90,7 @@ Feature: Import Works from LJ
 
   @import_lj_comm
   Scenario: Creating a new work from an LJ story that is posted to a community
-    Given basic tags
-      And I am logged in as "cosomeone"
+    Given I am logged in as "cosomeone"
     When "AO3-4179" is fixed
     #When I go to the import page
     #  And I fill in "urls" with "http://community.livejournal.com/rarelitslash/271960.html"
@@ -124,8 +120,7 @@ Feature: Import Works from LJ
 
   @import_lj_underscores
   Scenario: Importing from a journal with underscores in the name
-    Given basic tags
-      And I am logged in as "cosomeone"
+    Given I am logged in as "cosomeone"
     When I go to the import page
       And I fill in "urls" with "http://ao3_testing.livejournal.com/557.html"
       And I select "English" from "Choose a language"
@@ -134,8 +129,7 @@ Feature: Import Works from LJ
 
   @import_lj_multi_chapter
   Scenario: Creating a new multichapter work from an LJ story
-    Given basic tags
-      And I am logged in as "cosomeone"
+    Given I am logged in as "cosomeone"
       And I set my time zone to "UTC"
     When I go to the import page
       And I fill in "urls" with

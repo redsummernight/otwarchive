@@ -164,7 +164,6 @@ Feature: Import Works
   @work_import_multi_chapter_backdate
   Scenario: Importing a new multichapter work with backdating should have correct chapter index dates
     Given basic languages
-      And basic tags
       And I am logged in
       And I set my time zone to "UTC"
     When I go to the import page

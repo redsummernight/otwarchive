@@ -2,7 +2,6 @@
 
 Given "a work {string} with {int} kudo(s)" do |title, count|
   step "I start a new session"
-  step "basic tags"
 
   work = FactoryBot.create(:work, title: title)
 

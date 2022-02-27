@@ -100,8 +100,7 @@ Feature: Tag Wrangling - special cases
 
   Scenario: Tags with non-standard characters in them - question mark and period
   
-  Given basic tags
-    And the following activated tag wrangler exists
+  Given the following activated tag wrangler exists
       | login           |
       | workauthor      |
     And a character exists with name: "Evan ?", canonical: true
@@ -123,8 +122,7 @@ Feature: Tag Wrangling - special cases
 
   Scenario: Adding a noncanonical tag with "a.k.a.", and viewing works for that tag.
 
-    Given basic tags
-      And I am logged in as a random user
+    Given I am logged in as a random user
 
     When I post the work "Escape Attempt" with fandom "a.k.a. Jessica Jones"
       And I follow "a.k.a. Jessica Jones"

@@ -62,7 +62,6 @@ Feature: Non-public site and work skins
 
   Scenario: Users should be able to create and use a work skin
   Given I am logged in as "skinner"
-    And the default ratings exist
   When I am on the new skin page
     And I select "Work Skin" from "skin_type"
     And I fill in "Title" with "Awesome Work Skin"

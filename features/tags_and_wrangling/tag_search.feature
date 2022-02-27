@@ -5,8 +5,7 @@ Feature: Search Tags
   I want to use tag search
 
   Scenario: Search tags
-    Given I have no tags
-      And a fandom exists with name: "first fandom", canonical: false
+    Given a fandom exists with name: "first fandom", canonical: false
       And a character exists with name: "first last", canonical: true
       And a relationship exists with name: "first last/someone else", canonical: false
       And all indexing jobs have been run
@@ -40,8 +39,7 @@ Feature: Search Tags
       And I should see the tag search result "first last/someone else (0)"
 
     Scenario: Search for fandom with slash in name
-      Given I have no tags
-        And a fandom exists with name: "first/fandom", canonical: false
+      Given a fandom exists with name: "first/fandom", canonical: false
         And all indexing jobs have been run
       When I am on the search tags page
         And I fill in "tag_search" with "first"
@@ -50,8 +48,7 @@ Feature: Search Tags
         And I should see the tag search result "Fandom: first/fandom (0)"
 
     Scenario: Search for fandom with period in name
-      Given I have no tags
-        And a fandom exists with name: "first.fandom", canonical: false
+      Given a fandom exists with name: "first.fandom", canonical: false
         And all indexing jobs have been run
       When I am on the search tags page
         And I fill in "tag_search" with "first.fandom"

@@ -61,8 +61,7 @@ Feature: Admin Actions for Works, Comments, Series, Bookmarks
     Then I should not see "ToS Violation"
 
   Scenario: Can hide bookmarks
-    Given basic tags
-      And I am logged in as "regular_user" with password "password1"
+    Given I am logged in as "regular_user" with password "password1"
       And I post the work "A Nice Work"
     When I am logged in as "bad_user"
       And I view the work "A Nice Work"
@@ -81,8 +80,7 @@ Feature: Admin Actions for Works, Comments, Series, Bookmarks
     Then I should not see "Rude comment"
 
   Scenario: Can edit tags on works
-    Given basic tags
-      And I am logged in as "regular_user"
+    Given I am logged in as "regular_user"
       And I post the work "Changes" with fandom "User-Added Fandom" with freeform "User-Added Freeform" with category "M/M"
     When I am logged in as a "policy_and_abuse" admin
       And I view the work "Changes"
@@ -118,8 +116,7 @@ Feature: Admin Actions for Works, Comments, Series, Bookmarks
       And I should not see "Admin-Added Fandom"
 
   Scenario: Can edit external works
-    Given basic tags
-      And I am logged in as "regular_user"
+    Given I am logged in as "regular_user"
       And I bookmark the external work "External Changes"
     When I am logged in as a "policy_and_abuse" admin
       And I view the external work "External Changes"
@@ -147,8 +144,7 @@ Feature: Admin Actions for Works, Comments, Series, Bookmarks
       And I should see "M/M"
 
   Scenario: Can delete external works
-    Given basic tags
-      And I am logged in as "regular_user"
+    Given I am logged in as "regular_user"
       And I bookmark the external work "External Changes"
     When I am logged in as a "policy_and_abuse" admin
       And I view the external work "External Changes"
@@ -240,8 +236,7 @@ Feature: Admin Actions for Works, Comments, Series, Bookmarks
       And I should not see "This comment has been marked as spam."
 
   Scenario: Admin can edit language on works when posting without previewing
-    Given basic tags
-      And basic languages
+    Given basic languages
       And I am logged in as "regular_user"
       And I post the work "Wrong Language"
     When I am logged in as a "policy_and_abuse" admin
@@ -254,8 +249,7 @@ Feature: Admin Actions for Works, Comments, Series, Bookmarks
       And I should not see "English"
 
   Scenario: Admin can edit language on works when previewing first
-    Given basic tags
-      And basic languages
+    Given basic languages
       And I am logged in as "regular_user"
       And I post the work "Wrong Language"
     When I am logged in as a "policy_and_abuse" admin

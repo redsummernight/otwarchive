@@ -43,8 +43,7 @@ Feature: Bookmarks of deleted items
       But I should not see "Shorts"
 
   Scenario: Deleting an external work shouldn't make its bookmarks disappear completely.
-    Given basic tags
-      And I am logged in as "Alice"
+    Given I am logged in as "Alice"
       And I bookmark the external work "Extremely Objectionable Content"
       And I am logged in as a "policy_and_abuse" admin
       And I view the external work "Extremely Objectionable Content"

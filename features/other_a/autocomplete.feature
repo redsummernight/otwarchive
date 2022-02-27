@@ -41,7 +41,6 @@ Feature: Display autocomplete for tags
     Given I am logged in
       And a set of collections for testing autocomplete
       And a set of users for testing autocomplete
-      And basic tags
       And I go to the new work page
     Then the coauthor autocomplete field should list matching users
       And the gift recipient autocomplete field should list matching users
@@ -49,8 +48,7 @@ Feature: Display autocomplete for tags
 
   @javascript
   Scenario: Work co-author and association autocompletes should work with pseuds containing diacrictics
-    Given basic tags
-      And a set of users for testing autocomplete
+    Given a set of users for testing autocomplete
       And "coauthor" has the pseud "çola"
       And I am logged in
       And I go to the new work page
@@ -110,8 +108,7 @@ Feature: Display autocomplete for tags
   @javascript
   Scenario: Characters in a fandom with non-ASCII uppercase letters should appear in the autocomplete.
 
-    Given basic tags
-      And I am logged in
+    Given I am logged in
       And a canonical character "Bear" in fandom "Østenfor sol og vestenfor måne"
       And a canonical character "Beatrice" in fandom "Much Ado About Nothing"
       And I go to the new work page
@@ -124,8 +121,7 @@ Feature: Display autocomplete for tags
   @javascript
   Scenario: Accented uppercase letters should appear in the autocomplete.
 
-    Given basic tags
-      And I am logged in
+    Given I am logged in
       And a canonical character "Éowyn (Tolkien)"
       And a canonical character "Tybalt (Rómeó és Júlia)"
       And I go to the new work page
@@ -141,8 +137,7 @@ Feature: Display autocomplete for tags
   @javascript
   Scenario: Other non-ASCII uppercase letters should appear in the autocomplete.
 
-    Given basic tags
-      And I am logged in
+    Given I am logged in
       And a canonical fandom "Østenfor sol og vestenfor måne"
       And I go to the new work page
 
@@ -154,8 +149,7 @@ Feature: Display autocomplete for tags
   @javascript
   Scenario: Characters with a non-ASCII uppercase letter will appear in fandom-specific autocompletes.
 
-    Given basic tags
-      And I am logged in
+    Given I am logged in
       And a canonical character "Éowyn" in fandom "Lord of the Rings"
       And I go to the new work page
 
@@ -168,7 +162,6 @@ Feature: Display autocomplete for tags
   @javascript
   Scenario: Search terms are highlighted in autocomplete results
     Given I am logged in
-      And basic tags
       And a canonical relationship "Cassian Andor & Jyn Erso"
       And a canonical character "Éowyn"
       And I go to the new work page
@@ -202,8 +195,7 @@ Feature: Display autocomplete for tags
   @javascript
   Scenario: Tags with symbols shouldn't match all other tags with symbols.
 
-    Given basic tags
-      And I am logged in
+    Given I am logged in
       And a canonical freeform "AU - Canon"
       And a canonical freeform "AU - Cats"
       And a canonical freeform "Science Fiction & Fantasy"

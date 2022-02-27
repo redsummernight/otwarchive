@@ -68,8 +68,7 @@ Feature: Creating and editing tag sets
     And I should not see "Three & Four"
 
   Scenario: A user should be able to add and remove rating tags for a tag set they own
-  Given the default ratings exist
-    And I am logged in
+  Given I am logged in
     And I set up the tag set "Ratings" with the rating tags "Explicit, Mature"
   When I add the rating tags "Teen And Up Audiences, General Audiences" to the tag set "Ratings"
   Then I should see "Explicit"
@@ -83,8 +82,7 @@ Feature: Creating and editing tag sets
     And I should not see "Teen And Up Audiences"
 
   Scenario: A user should be able to add and remove category tags for a tag set they own
-  Given the basic categories exist
-    And I am logged in
+  Given I am logged in
     And I set up the tag set "Categories" with the category tags "Other, F/M"
   When I add the category tags "F/F, M/M" to the tag set "Categories"
   Then I should see "Other"
@@ -98,8 +96,7 @@ Feature: Creating and editing tag sets
     And I should not see "Other"
 
   Scenario: A user should be able to add and remove warning tags for a tag set they own
-  Given the basic warnings exist
-    And I am logged in
+  Given I am logged in
     And I set up the tag set "Archive Warnings" with the warning tags "Choose Not To Use Archive Warnings"
   When I add the warning tags "No Archive Warnings Apply" to the tag set "Archive Warnings"
   Then I should see "Choose Not To Use Archive Warnings"

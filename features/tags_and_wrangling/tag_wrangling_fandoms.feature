@@ -8,7 +8,6 @@ Scenario: fandoms wrangling - syns, mergers, autocompletes, metatags
   Given the following activated tag wrangler exists
     | login  | password    |
     | Enigel | wrangulate! |
-    And basic tags
     And a media exists with name: "TV Shows", canonical: true
     And a character exists with name: "Neal Caffrey", canonical: true
     And I am logged in as "Enigel" with password "wrangulate!"
@@ -147,8 +146,7 @@ Scenario: fandoms wrangling - syns, mergers, autocompletes, metatags
 
 Scenario: Checking the media pages
 
-  Given basic tags
-    And a media exists with name: "TV Shows", canonical: true
+  Given a media exists with name: "TV Shows", canonical: true
     And a media exists with name: "Video Games", canonical: true
     And a media exists with name: "Books", canonical: true
     And a canonical fandom "Stargate"

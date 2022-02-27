@@ -24,8 +24,7 @@ Feature: Preferences
     And I should not see "Rating: Mature"
 
   Scenario: set preference to hide custom css on stories
-  Given basic tags
-    And basic skins
+  Given basic skins
     And I am logged in as "tasteless"
   When I set up the draft "Big and Loud"
     And I select "Basic Formatting" from "work_work_skin_id"

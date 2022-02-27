@@ -49,7 +49,6 @@ Scenario: Post to collection from the work edit page
 Scenario: Post to collection from the collection home page
 
   Given I have the collection "My Collection Thing" with name "collection_thing"
-    And basic tags
     And I am logged in as "first_user"
   When I go to the collections page
     And I follow "My Collection Thing"

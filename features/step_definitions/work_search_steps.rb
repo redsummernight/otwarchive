@@ -235,7 +235,6 @@ end
 
 Given /^a set of works with various warnings for searching$/ do
   step %{basic tags}
-  step %{all warnings exist}
 
   warnings = [ArchiveConfig.WARNING_DEFAULT_TAG_NAME,
               ArchiveConfig.WARNING_NONE_TAG_NAME,

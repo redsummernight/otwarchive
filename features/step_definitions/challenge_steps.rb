@@ -44,8 +44,6 @@ Given /^I have standard challenge tags set ?up$/ do
   rescue
     step %{I am logged in as "mod1"}
   end
-  step "I have no tags"
-    step "basic tags"
     step %{a canonical fandom "Stargate Atlantis"}
     step %{a canonical fandom "Stargate SG-1"}
     step %{a canonical fandom "Bad Choice"}

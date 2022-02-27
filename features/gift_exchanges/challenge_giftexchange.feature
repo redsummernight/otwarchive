@@ -613,8 +613,7 @@ Feature: Gift Exchange Challenge
   Scenario: If a work is connected to an assignment for a user who disallows
   gifts, user is still automatically added as a gift recipient. The recipient
   remains attached even if the work is later disconnected from the assignment.
-    Given basic tags
-      And the user "recip" exists and is activated
+    Given the user "recip" exists and is activated
       And the user "recip" disallows gifts
       And I am logged in as "gifter"
       And I have an assignment for the user "recip" in the collection "exchange_collection"
@@ -628,8 +627,7 @@ Feature: Gift Exchange Challenge
   Scenario: A user can explicitly give a gift to a user who disallows gifts if
   the work is connected to an assignment. The recipient remains attached even if
   the work is later disconnected from the assignment.
-    Given basic tags
-      And the user "recip" exists and is activated
+    Given the user "recip" exists and is activated
       And the user "recip" disallows gifts
       And I am logged in as "gifter"
       And I have an assignment for the user "recip" in the collection "exchange_collection"

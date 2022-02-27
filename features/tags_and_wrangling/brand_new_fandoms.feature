@@ -2,11 +2,7 @@
 Feature: Brand new fandoms
 
   Background:
-    # The external works form will error if we don't have basic tags, and since
-    # we're trying to create a brand new tag, we just want to double-check that
-    # it doesn't exist.
-    Given basic tags
-      And the tag "My Brand New Fandom" does not exist
+    Given the tag "My Brand New Fandom" does not exist
 
   Scenario: Brand new fandoms should be visible on the Uncategorized Fandoms page.
     Given I am logged in as a random user

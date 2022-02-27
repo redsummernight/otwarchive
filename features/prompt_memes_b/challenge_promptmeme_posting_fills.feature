@@ -5,8 +5,7 @@ Feature: Prompt Meme Challenge
   I want to prompt, post and receive fills anonymously
 
   Scenario: Prompt anonymously and be notified of the fills without the writer knowing who I am
-  Given basic tags
-    And the following activated user exists
+  Given the following activated user exists
       | login   | password | email     |
       | myname1 | password | my1@e.org |
     And a fandom exists with name: "GhostSoup", canonical: true

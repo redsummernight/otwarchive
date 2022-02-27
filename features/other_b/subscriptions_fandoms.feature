@@ -35,9 +35,8 @@ Feature: Subscriptions
 
   Scenario: Mystery work is not shown in feed
 
-  Given basic tags
-    And I am logged in as "myname2"
-  Given I have a hidden collection "Hidden Treasury" with name "hidden_treasury"
+  Given I am logged in as "myname2"
+    And I have a hidden collection "Hidden Treasury" with name "hidden_treasury"
   When I am logged in as "myname1"
     And I post the work "Old Snippet"
     And I edit the work "Old Snippet"
@@ -55,9 +54,8 @@ Feature: Subscriptions
 
   Scenario: Author of anonymous work is not shown in feed
 
-  Given basic tags
-    And I am logged in as "myname2"
-  Given I have an anonymous collection "Hidden Treasury" with name "hidden_treasury"
+  Given I am logged in as "myname2"
+    And I have an anonymous collection "Hidden Treasury" with name "hidden_treasury"
   When I am logged in as "myname1"
     And I post the work "Old Snippet"
     And I edit the work "Old Snippet"

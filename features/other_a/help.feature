@@ -17,7 +17,6 @@ Scenario: view the help popup for chapter title
   Given the following activated user exists
     | login         | password   |
     | epicauthor    | password   |
-    And basic tags
   When I am logged in as "epicauthor"
     And I go to epicauthor's user page
     And I follow "New Work"

@@ -8,8 +8,7 @@ Feature: Import Works from deviantart
 
   @import_da_title_link
   Scenario: Creating a new art work from a deviantart title link with automatic metadata
-    Given basic tags
-      And I am logged in as "cosomeone"
+    Given I am logged in as "cosomeone"
     When I go to the import page
       And I fill in "urls" with "http://bingeling.deviantart.com/art/Flooded-45971613"
       And I select "English" from "Choose a language"
@@ -36,8 +35,7 @@ Feature: Import Works from deviantart
 
   @import_da_gallery_link
   Scenario: Creating a new art work from a deviantart gallery link fails - it needs the direct link
-    Given basic tags
-      And I am logged in as "cosomeone"
+    Given I am logged in as "cosomeone"
     When I go to the import page
       And I fill in "urls" with "http://bingeling.deviantart.com/gallery/#/drdbx9"
       And I select "English" from "Choose a language"
@@ -48,8 +46,7 @@ Feature: Import Works from deviantart
 
   @import_da_fic
   Scenario: Creating a new fic from deviantart import
-    Given basic tags
-      And I am logged in as "cosomeone"
+    Given I am logged in as "cosomeone"
     When I go to the import page
       And I fill in "urls" with "http://cesy12.deviantart.com/art/AO3-testing-text-196158032"
       And I select "English" from "Choose a language"

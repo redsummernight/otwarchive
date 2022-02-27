@@ -3,8 +3,6 @@ Feature: Archivist bulk imports
 
   Background:
     Given I have an archivist "archivist"
-      And the default ratings exist
-      And all warnings exist
       And I am logged in as "archivist"
 
   Scenario: Non-archivist cannot import for others
@@ -323,7 +321,6 @@ Feature: Archivist bulk imports
   Scenario: Open Doors committee members can block an email address from having imports
     Given I have an Open Doors committee member "OpenDoors"
       And I have an archivist "archivist"
-      And the default ratings exist
       And I am logged in as "OpenDoors"
     When I go to the Open Doors tools page
       And I fill in "external_author_email" with "random@example.com"
@@ -336,7 +333,6 @@ Feature: Archivist bulk imports
   Scenario: Open Doors committee members can supply a new email address for an already imported work.
     Given I have an Open Doors committee member "OpenDoors"
       And I have an archivist "archivist"
-      And the default ratings exist
       And I am logged in as "archivist"
     When I import the work "http://ao3testing.dreamwidth.org/593.html" by "randomtestname" with email "random@example.com"
       And I am logged in as "OpenDoors"

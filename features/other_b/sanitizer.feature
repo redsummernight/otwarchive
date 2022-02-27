@@ -27,8 +27,7 @@ Feature: Sanitizing HTML
   # don't get the reason behind the "should not find XSS" test. --
   # Rebecca
 
-  Given basic tags
-    And I am logged in as "newbie" with password "password"
+  Given I am logged in as "newbie" with password "password"
   When I go to the new work page
   Then I should see "Post New Work"
     And I select "Not Rated" from "Rating"

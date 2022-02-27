@@ -7,8 +7,7 @@ Feature: Create Works
 
   Scenario: Creating a new work with international characters
 
-  Given basic tags
-    And basic languages
+    Given basic languages
       And I am logged in as "germanfan" with password "password"
     When I go to the new work page
     Then I should see "Post New Work"

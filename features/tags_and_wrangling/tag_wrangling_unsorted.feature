@@ -5,7 +5,6 @@ Feature: Tag Wrangling - Unsorted Tags
     Given the following activated tag wrangler exists
       | login  |
       | Enigel |
-      And basic tags
       And I am logged in as "Enigel"
       And I follow "Tag Wrangling"
       And a unsorted_tag exists with name: "author regrets nothing"

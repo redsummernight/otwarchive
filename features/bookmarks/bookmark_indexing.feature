@@ -102,16 +102,14 @@ Feature: Bookmark Indexing
 
   Scenario: A bookmark of an external work should show on a tag's bookmark
   listing once the tag is made canonical
-    Given basic tags
-      And I am logged in as "bookmarker"
+    Given I am logged in as "bookmarker"
       And I bookmark the external work "Outside Story" with character "Mikki Mendoza"
     When the tag "Mikki Mendoza" is canonized
       And I go to the bookmarks tagged "Mikki Mendoza"
     Then I should see "Outside Story"
 
   Scenario: New bookmarks of external works should appear in the bookmark listings for its tag's existing metatag, and removing the tag should remove the bookmark from both the tag's and metatag's bookmark listings
-    Given basic tags
-      And a canonical character "Ann"
+    Given a canonical character "Ann"
       And a canonical character "Ann Ewing"
       And "Ann" is a metatag of the character "Ann Ewing"
     When I am logged in

@@ -39,13 +39,11 @@ Given "I am logged in as an admin" do
 end
 
 Given /^basic languages$/ do
-  Language.default
   german = Language.find_or_create_by(short: "DE", name: "Deutsch", support_available: true, abuse_support_available: true)
   Locale.create(iso: "de", name: "Deutsch", language: german)
 end
 
 Given /^Persian language$/ do
-  Language.default
   persian = Language.find_or_create_by(short: "fa", name: "Persian", support_available: true, abuse_support_available: true)
   Locale.create(iso: "fa", name: "Persian", language: persian)
 end

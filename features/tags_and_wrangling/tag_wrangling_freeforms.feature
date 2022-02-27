@@ -8,7 +8,6 @@ Scenario: freeforms wrangling - syns, mergers, autocompletes, metatags
   Given the following activated tag wrangler exists
     | login  | password    |
     | Enigel | wrangulate! |
-    And basic tags
     And I am logged in as "Enigel" with password "wrangulate!"
     And I follow "Tag Wrangling"
 

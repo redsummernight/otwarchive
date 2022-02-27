@@ -6,8 +6,7 @@ Feature: Import Works from DW
 
   @import_dw
   Scenario: Importing a new work from an DW story with automatic metadata
-    Given basic tags
-      And a fandom exists with name: "Testing", canonical: true
+    Given a fandom exists with name: "Testing", canonical: true
       And the following activated user exists
         | login          | password    |
         | cosomeone      | something   |
@@ -43,8 +42,7 @@ Feature: Import Works from DW
   # This is to make sure that we don't accidentally strip other tables than
   # DW metadata tables esp. when there's no DW metadata table
 
-    Given basic tags
-      And the following activated user exists
+    Given the following activated user exists
         | login          | password    |
         | cosomeone      | something   |
       And I am logged in as "cosomeone" with password "something"
@@ -71,8 +69,7 @@ Feature: Import Works from DW
 
   @import_dw_tables_no_backdate
   Scenario: Creating a new work from an DW story without backdating it
-    Given basic tags
-      And the following activated user exists
+    Given the following activated user exists
         | login          | password    |
         | cosomeone      | something   |
       And I am logged in as a random user
@@ -98,8 +95,7 @@ Feature: Import Works from DW
 
   @import_dw_comm
   Scenario: Creating a new work from an DW story that is posted to a community
-    Given basic tags
-      And I am logged in as "cosomeone"
+    Given I am logged in as "cosomeone"
     When I go to the import page
       And I fill in "urls" with "https://ao3testingcomm.dreamwidth.org/702.html"
       And I select "English" from "Choose a language"
@@ -128,8 +124,7 @@ Feature: Import Works from DW
 
   @import_dw_multi_chapter
   Scenario: Creating a new multichapter work from a DW story
-    Given basic tags
-      And the following activated user exists
+    Given the following activated user exists
         | login          | password    |
         | cosomeone      | something   |
       And I am logged in as "cosomeone" with password "something"

@@ -9,7 +9,6 @@ Feature: Edit chapters
   Given the following activated user exists
     | login         | password   |
     | epicauthor    | password   |
-    And basic tags
   When I go to epicauthor's user page
     Then I should see "There are no works"
   When I am logged in as "epicauthor" with password "password"
@@ -199,8 +198,7 @@ Feature: Edit chapters
 
 
   Scenario: Create a work and add a draft chapter, edit the draft chapter, and save changes to the draft chapter without previewing or posting
-  Given basic tags
-    And I am logged in as "moose" with password "muffin"
+  Given I am logged in as "moose" with password "muffin"
   When I go to the new work page
   Then I should see "Post New Work"
     And I select "General Audiences" from "Rating"

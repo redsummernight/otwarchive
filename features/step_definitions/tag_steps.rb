@@ -1,64 +1,5 @@
 ### GIVEN
 
-Given /^I have no tags$/ do
-  # Tag.delete_all if Tag.count > 1
-  # silence_warnings {load "#{Rails.root}/app/models/fandom.rb"}
-end
-
-Given /^basic tags$/ do
-  step %{the default ratings exist}
-  step %{the basic warnings exist}
-  Fandom.where(name: "No Fandom", canonical: true).first_or_create
-  step %{the basic categories exist}
-  step %{all indexing jobs have been run}
-end
-
-Given /^the default ratings exist$/ do
-  # TODO: "Not Rated" should be adult, to match the behavior in production, but
-  # there are many tests that rely on being able to view a "Not Rated" work
-  # without clicking through the adult content warning. So until those tests
-  # are fixed, we leave "Not Rated" as a non-adult rating.
-  [
-    ArchiveConfig.RATING_DEFAULT_TAG_NAME,
-    ArchiveConfig.RATING_GENERAL_TAG_NAME,
-    ArchiveConfig.RATING_TEEN_TAG_NAME
-  ].each do |rating|
-    Rating.find_or_create_by!(name: rating, canonical: true)
-  end
-
-  [
-    ArchiveConfig.RATING_MATURE_TAG_NAME,
-    ArchiveConfig.RATING_EXPLICIT_TAG_NAME
-  ].each do |rating|
-    Rating.find_or_create_by!(name: rating, canonical: true, adult: true)
-  end
-end
-
-Given /^the basic warnings exist$/ do
-  warnings = [ArchiveConfig.WARNING_DEFAULT_TAG_NAME,
-              ArchiveConfig.WARNING_NONE_TAG_NAME]
-  warnings.each do |warning|
-    ArchiveWarning.find_or_create_by!(name: warning, canonical: true)
-  end
-end
-
-Given /^all warnings exist$/ do
-  step %{the basic warnings exist}
-  warnings = [ArchiveConfig.WARNING_VIOLENCE_TAG_NAME,
-              ArchiveConfig.WARNING_DEATH_TAG_NAME,
-              ArchiveConfig.WARNING_NONCON_TAG_NAME,
-              ArchiveConfig.WARNING_CHAN_TAG_NAME]
-  warnings.each do |warning|
-    ArchiveWarning.find_or_create_by!(name: warning, canonical: true)
-  end
-end
-
-Given /^the basic categories exist$/ do
-  %w(Gen Other F/F Multi F/M M/M).each do |category|
-    Category.find_or_create_by!(name: category, canonical: true)
-  end
-end
-
 Given /^I have a canonical "([^\"]*)" fandom tag named "([^\"]*)"$/ do |media, fandom|
   fandom = Fandom.find_or_create_by_name(fandom)
   fandom.update(canonical: true)
@@ -170,7 +111,6 @@ Given /^the unsorted tags setup$/ do
 end
 
 Given /^the tag wrangling setup$/ do
-  step %{basic tags}
   step %{a media exists with name: "TV Shows", canonical: true}
   step %{I am logged in as a random user}
   step %{I post the work "Revenge of the Sith 2" with fandom "Star Wars, Stargate SG-1" with character "Daniel Jackson" with second character "Jack O'Neil" with rating "Not Rated" with relationship "JackDaniel"}

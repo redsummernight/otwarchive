@@ -33,8 +33,7 @@ Feature: Gift Exchange Challenge with Tag Sets
   @javascript
   Scenario: Run a single-fandom exchange
 
-  Given basic tags
-    And I am logged in as "mod1"
+  Given I am logged in as "mod1"
     And I have a canonical "Celebrities & Real People" fandom tag named "Hockey RPF"
     And I have a canonical "Celebrities & Real People" fandom tag named "Bandom"
     And a canonical character "Alexander Ovechkin" in fandom "Hockey RPF"

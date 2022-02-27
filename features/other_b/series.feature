@@ -197,8 +197,7 @@ Feature: Create and Edit Series
     Then I should see "Sorry, we can't remove all creators of a work."
 
   Scenario: Removing self as co-creator from co-created series
-    Given basic tags
-      And the user "son" allows co-creators
+    Given the user "son" allows co-creators
     When I am logged in as "moon" with password "testuser"
       And I coauthored the work "Sweetie Bell" as "moon" with "son"
       And I edit the work "Sweetie Bell"

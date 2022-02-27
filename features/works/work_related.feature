@@ -237,8 +237,7 @@ Scenario: Draft works should not show up on related works
 
 Scenario: Listing external works as inspirations
 
-  Given basic tags
-    And mock websites with no content
+  Given mock websites with no content
   When I am logged in as "remixer" with password "password"
     And I set up the draft "Followup"
     And I check "parent-options-show"
@@ -284,8 +283,7 @@ Scenario: Listing external works as inspirations
 
 Scenario: External work language
 
-  Given basic tags
-    And basic languages
+  Given basic languages
     And mock websites with no content
   When I am logged in as "remixer" with password "password"
     And I go to the new work page

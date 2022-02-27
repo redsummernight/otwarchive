@@ -36,7 +36,6 @@ end
 # If you add to this regexp, you probably want to update all the
 # similar regexps in the I post/Given the draft/the work steps below.
 When /^I set up (?:a|the) draft "([^"]*)"(?: with fandom "([^"]*)")?(?: with character "([^"]*)")?(?: with second character "([^"]*)")?(?: with freeform "([^"]*)")?(?: with second freeform "([^"]*)")?(?: with category "([^"]*)")?(?: with rating "([^\"]*)")?(?: (?:in|to) (?:the )?collection "([^"]*)")?(?: as a gift (?:for|to) "([^"]*)")?(?: as part of a series "([^"]*)")?(?: with relationship "([^"]*)")?(?: using the pseud "([^"]*)")?$/ do |title, fandom, character, character2, freeform, freeform2, category, rating, collection, recipient, series, relationship, pseud|
-  step %{basic tags}
   visit new_work_path
   step %{I fill in the basic work information for "#{title}"}
   select(rating.blank? ? DEFAULT_RATING : rating, from: "Rating")
@@ -126,7 +125,6 @@ end
 
 Given /^the chaptered work(?: with ([\d]+) chapters)?(?: with ([\d]+) comments?)? "([^"]*)"$/ do |n_chapters, n_comments, title|
   step %{I start a new session}
-  step %{basic tags}
 
   title ||= "Blabla"
   n_chapters ||= 2
@@ -165,7 +163,6 @@ end
 
 Given /^the work(?: "([^"]*)")? with(?: (\d+))? comments setup$/ do |title, n_comments|
   step %{I start a new session}
-  step %{basic tags}
 
   title ||= "Blabla"
   work = FactoryBot.create(:work, title: title)
@@ -177,7 +174,6 @@ end
 
 Given /^the work(?: "([^"]*)")? with(?: (\d+))? bookmarks? setup$/ do |title, n_bookmarks|
   step %{I start a new session}
-  step %{basic tags}
 
   title ||= "Blabla"
   work = FactoryBot.create(:work, title: title)
@@ -477,7 +473,6 @@ When /^I post the locked work "([^"]*)"$/ do |title|
 end
 
 When /^the locked draft "([^"]*)"$/ do |title|
-  step "basic tags"
   visit new_work_url
   step %{I fill in the basic work information for "#{title}"}
   check("work_restricted")

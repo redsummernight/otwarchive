@@ -5,8 +5,7 @@ Feature: Import Works
   I want to create new works by importing them
 
   Scenario: Entering a bogus URL
-    Given basic tags
-      And I set up importing with a mock website
+    Given I set up importing with a mock website
       And I am logged in as a random user
     When I go to the import page
       And I fill in "urls" with "http://no-content"

@@ -215,7 +215,6 @@ Given /^I have bookmarks of various completion statuses to search$/ do
 end
 
 Given /^I have bookmarks of old series to search$/ do
-  step %{basic tags}
   step %{the user "creator" exists and is activated}
   creator = User.find_by(login: "creator").default_pseud
 

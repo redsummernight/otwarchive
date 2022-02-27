@@ -17,7 +17,6 @@ Feature: Languages
       | germanuser1   | password   |
       | germanuser2   | password   |
       | frenchuser    | password   |
-      And basic tags
       And basic languages
   When I am logged in as "germanuser2" with password "password"
     And I post the work "Die Rache der Sith"

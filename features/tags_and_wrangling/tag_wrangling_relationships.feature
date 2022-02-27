@@ -8,7 +8,6 @@ Scenario: relationship wrangling - syns, mergers, characters, autocompletes
   Given the following activated tag wrangler exists
     | login  | password    |
     | Enigel | wrangulate! |
-    And basic tags
     And a canonical fandom "Torchwood"
     And a canonical character "Hoban Washburne"
     And a canonical character "Zoe Washburne"
@@ -166,7 +165,6 @@ Scenario: AO3-959 Non-canonical merger pairings
   Given the following activated tag wrangler exists
     | login  | password    |
     | Enigel | wrangulate! |
-    And basic tags
     And a canonical fandom "Testing"
     And a canonical relationship "Testing McTestypants/Testing McTestySkirt"
     And a noncanonical relationship "Testypants/Testyskirt"
@@ -216,7 +214,6 @@ Scenario: AO3-2147 Creating a new merger to a non-can tag while adding character
     And the following activated user exists
     | login  | password    |
     | writer | password    |
-    And basic tags
     And a canonical fandom "Up with Testing"
     And a canonical fandom "Coding"
     And a canonical character "Testing McTestypants"

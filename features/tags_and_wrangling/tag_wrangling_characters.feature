@@ -8,7 +8,6 @@ Scenario: character wrangling - syns, mergers, characters, autocompletes
   Given the following activated tag wrangler exists
     | login  | password    |
     | Enigel | wrangulate! |
-    And basic tags
     And a fandom exists with name: "Doctor Who", canonical: true
     And a relationship exists with name: "First Doctor/TARDIS", canonical: true
     And I am logged in as "Enigel" with password "wrangulate!"

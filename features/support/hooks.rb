@@ -3,15 +3,15 @@ require "cucumber/timecop"
 require "email_spec/cucumber"
 
 Before do
-  # Create default settings if necessary, since the database is truncated
-  # after every test.
-  #
   # Enable our experimental caching, skipping validations which require
   # setting an admin as the last updater.
-  AdminSetting.default.update_attribute(:enable_test_caching, true)
+  AdminSetting.first.update_attribute(:enable_test_caching, true)
 
-  # Create default language and locale.
-  Locale.default
+  # TODO: "Not Rated" should be adult, to match the behavior in production, but
+  # there are many tests that rely on being able to view a "Not Rated" work
+  # without clicking through the adult content warning. So until those tests
+  # are fixed, we leave "Not Rated" as a non-adult rating.
+  Rating.find_by!(name: ArchiveConfig.RATING_DEFAULT_TAG_NAME).update_attribute(:adult, false)
 
   # Clears used values for all generators.
   Faker::UniqueGenerator.clear
