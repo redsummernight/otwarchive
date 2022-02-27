@@ -188,8 +188,8 @@ describe "rake After:fix_teen_and_up_imported_rating" do
     tag.save!(validate: false)
     return tag
   end
-  let!(:canonical_gen_rating) { Rating.find_or_create_by!(name: ArchiveConfig.RATING_GENERAL_TAG_NAME, canonical: true) }
-  let!(:canonical_teen_rating) { Rating.find_or_create_by!(name: ArchiveConfig.RATING_TEEN_TAG_NAME, canonical: true) }
+  let!(:canonical_gen_rating) { Rating.find_by!(name: ArchiveConfig.RATING_GENERAL_TAG_NAME, canonical: true) }
+  let!(:canonical_teen_rating) { Rating.find_by!(name: ArchiveConfig.RATING_TEEN_TAG_NAME, canonical: true) }
   let!(:work_with_noncanonical_rating) { create(:work, rating_string: noncanonical_teen_rating.name) }
   let!(:work_with_canonical_and_noncanonical_ratings) { create(:work, rating_string: [noncanonical_teen_rating.name, ArchiveConfig.RATING_GENERAL_TAG_NAME].join(",")) }
 
@@ -206,8 +206,8 @@ describe "rake After:clean_up_noncanonical_ratings" do
     tag.save!(validate: false)
     tag
   end
-  let!(:canonical_teen_rating) { Rating.find_or_create_by!(name: ArchiveConfig.RATING_TEEN_TAG_NAME, canonical: true) }
-  let!(:default_rating) { Rating.find_or_create_by!(name: ArchiveConfig.RATING_DEFAULT_TAG_NAME, canonical: true) }
+  let!(:canonical_teen_rating) { Rating.find_by!(name: ArchiveConfig.RATING_TEEN_TAG_NAME, canonical: true) }
+  let!(:default_rating) { Rating.find_by!(name: ArchiveConfig.RATING_DEFAULT_TAG_NAME, canonical: true) }
   let!(:work_with_noncanonical_rating) { create(:work, rating_string: noncanonical_rating.name) }
   let!(:work_with_canonical_and_noncanonical_ratings) { create(:work, rating_string: [noncanonical_rating.name, canonical_teen_rating.name]) }
 
@@ -232,7 +232,7 @@ describe "rake After:clean_up_noncanonical_ratings" do
 end
 
 describe "rake After:clean_up_noncanonical_categories" do
-  let!(:canonical_category_tag) { Category.find_or_create_by(name: ArchiveConfig.CATEGORY_GEN_TAG_NAME, canonical: true) }
+  let!(:canonical_category_tag) { Category.find_by!(name: ArchiveConfig.CATEGORY_GEN_TAG_NAME, canonical: true) }
   let!(:noncanonical_category_tag) do
     tag = Category.create(name: "Borked category tag")
     tag.canonical = false

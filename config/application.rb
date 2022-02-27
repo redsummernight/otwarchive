@@ -114,5 +114,11 @@ module Otwarchive
                                                   authentication: ArchiveConfig.SMTP_AUTHENTICATION
                                                 })
     end
+
+    config.after_initialize do
+      AdminSetting.default
+      Locale.default
+      Tag.defaults
+    end
   end
 end
