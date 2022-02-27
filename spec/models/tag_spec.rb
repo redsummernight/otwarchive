@@ -184,15 +184,6 @@ describe Tag do
         expect(results.include?("#{tag_character.id}: #{tag_character.name}")).to be_truthy
         expect(results.include?("brave_sire_robin")).to be_falsey
       end
-
-      it 'old tag maker still works' do
-        tag_adult = Rating.create_canonical('adult', true)
-        tag_normal = ArchiveWarning.create_canonical('other')
-        expect(tag_adult.name).to eq('adult')
-        expect(tag_normal.name).to eq('other')
-        expect(tag_adult.adult).to be_truthy
-        expect(tag_normal.adult).to be_falsey
-      end
     end
 
     context "when logged in as an admin" do

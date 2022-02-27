@@ -16,7 +16,6 @@ Feature: Tag Wrangling - Unsorted Tags
     Given the following activated tag wrangler exists
       | login       |
       | dizmo       |
-      And a fandom exists with name: "No Fandom", canonical: true
       And the unsorted tags setup
     When I am logged in as "dizmo"
       And I go to the unsorted_tags page
