@@ -248,8 +248,7 @@ describe WorksController do
 
         it "doesn't update the works' rating" do
           assigns(:works).each do |work|
-            expect(work.ratings.reload.map(&:name)).not_to include("Nonexistent Rating")
-            expect(work.ratings.reload.map(&:name)).to include(ArchiveConfig.RATING_DEFAULT_TAG_NAME)
+            expect(work.ratings.reload.map(&:name)).to eq([ArchiveConfig.RATING_GENERAL_TAG_NAME])
           end
         end
       end
@@ -265,8 +264,7 @@ describe WorksController do
 
         it "replaces the works' rating" do
           assigns(:works).each do |work|
-            expect(work.ratings.reload.map(&:name)).not_to include(ArchiveConfig.RATING_DEFAULT_TAG_NAME)
-            expect(work.ratings.reload.map(&:name)).to include(ArchiveConfig.RATING_EXPLICIT_TAG_NAME)
+            expect(work.ratings.reload.map(&:name)).to eq([ArchiveConfig.RATING_EXPLICIT_TAG_NAME])
           end
         end
       end
