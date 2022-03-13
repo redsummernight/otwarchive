@@ -5,7 +5,7 @@ not:
   canonical: true
 none:
   id: 2
-  name: No Warnings
+  name: No Archive Warnings Apply
   canonical: true
   type: ArchiveWarning
 fandom1:
