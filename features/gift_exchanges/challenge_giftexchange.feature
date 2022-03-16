@@ -56,7 +56,6 @@ Feature: Gift Exchange Challenge
       And I submit
     Then I should see "Challenge was successfully updated"
       And I should see the correct time zone for "Pacific Time (US & Canada)"
-      And I jump in our Delorean and return to the present
 
   Scenario: Add a co-mod
     Given the following activated users exist

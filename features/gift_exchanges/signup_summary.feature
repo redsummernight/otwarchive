@@ -38,4 +38,3 @@ Feature: Gift Exchange Signup Summary
       And I view the sign-up summary for "Exchange"
     Then I should see "Stargate SG-1 1 1"
       And I should see "Stargate Atlantis 1 1"
-      And I jump in our Delorean and return to the present

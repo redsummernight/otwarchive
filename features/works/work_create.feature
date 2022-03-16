@@ -370,7 +370,6 @@ Feature: Create Works
       And I select "30" from "work[chapter_attributes][published_at(3i)]"
       And I press "Post"
     Then I should see "Publication date can't be in the future."
-    When I jump in our Delorean and return to the present
 
   Scenario: Inviting a co-author adds the co-author to all existing chapters when they accept the invite
     Given the user "foobar" exists and is activated

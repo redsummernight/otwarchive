@@ -517,7 +517,6 @@ Feature: Edit chapters
     When I select "30" from "chapter[published_at(3i)]"
       And I press "Post"
     Then I should see "Publication date can't be in the future."
-    When I jump in our Delorean and return to the present
 
 
   Scenario: The Post Draft option on your drafts page only posts the first
