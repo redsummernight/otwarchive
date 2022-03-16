@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 ruby '2.7.3'
 
-gem 'test-unit', '~> 3.2'
-
 gem 'bundler'
 
 gem "rails", "~> 6.0.4"
@@ -130,12 +128,10 @@ group :test do
   gem 'capybara-screenshot'
   gem 'cucumber-rails', require: false
   gem 'launchy'    # So you can do Then show me the page
-  gem 'delorean'
   gem "faker"
   # Record and replay data from external URLs
   gem 'vcr', '~> 3.0', '>= 3.0.1'
   gem 'webmock', '~> 3.7.6'
-  gem 'timecop'
   gem 'cucumber-timecop', require: false
   # Code coverage
   gem "simplecov"
@@ -154,7 +150,6 @@ end
 
 group :development do
   gem 'factory_bot_rails'
-  gem 'bundler-audit'
   gem 'active_record_query_trace', '~> 1.6', '>= 1.6.1'
 end
 
