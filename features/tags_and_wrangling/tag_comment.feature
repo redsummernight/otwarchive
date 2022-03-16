@@ -10,14 +10,13 @@ I'd like to comment on a tag'
         | login     |
         | dizmo     |
       And a fandom exists with name: "Stargate Atlantis", canonical: true
-      And it is currently Mon Mar 27 22:00:00 UTC 2017
+      And time is frozen at Mon Mar 27 22:00:00 UTC 2017
     When I am logged in as "dizmo"
     When I view the tag "Stargate Atlantis"
     Then I should see "0 comments"
     When I post the comment "Shouldn't this be a metatag with Stargate?" on the tag "Stargate Atlantis" via web
     Then I should see "Shouldn't this be a metatag with Stargate?"
-      And the comment's posted date should be nowish
-      And I jump in our Delorean and return to the present
+      And I should see "Mon 27 Mar 2017 06:00PM EDT" within ".posted.datetime"
 
   Scenario: Edit a comment on a tag
 
@@ -25,19 +24,18 @@ I'd like to comment on a tag'
         | login     |
         | dizmo     |
       And a fandom exists with name: "Stargate Atlantis", canonical: true
-      And it is currently Mon Mar 27 22:00:00 UTC 2017
     When I am logged in as "dizmo"
     When I post the comment "Shouldn't this be a metatag with Stargate?" on the tag "Stargate Atlantis"
     When I follow "Edit"
     Then the "Comment" field should contain "Shouldn't this be a metatag with Stargate?"
       And I should see "Cancel"
     When I fill in "Comment" with "Yep, we should have a Stargate franchise metatag."
+      And time is frozen at Mon Mar 27 22:00:00 UTC 2017
       And I press "Update"
     Then I should see "Comment was successfully updated."
       And I should see "Yep, we should have a Stargate franchise metatag."
       And I should not see "Shouldn't this be a metatag with Stargate?"
-      And I should see Last Edited nowish
-    When I jump in our Delorean and return to the present
+      And I should see "Last Edited Mon 27 Mar 2017 06:00PM EDT"
 
   Scenario: Multiple comments on a tag increment correctly
 

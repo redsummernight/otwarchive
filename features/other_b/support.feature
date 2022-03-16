@@ -17,7 +17,6 @@ Feature: Filing a support request
     And 2 emails should be delivered
     And the email should contain "We're working hard to reply to everyone, and we'll respond to you as soon as we can."
     And the email should contain "If you have additional questions or information"
-    And the email should say what time it was sent
   When I follow "Support & Feedback"
     And I fill in "Brief summary" with "you suck"
     And I fill in "Your question or problem" with "blah blah blah"
