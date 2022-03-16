@@ -146,7 +146,7 @@ Given /^I have bookmarks to search by dates$/ do
   work1 = nil
   series1 = nil
   external1 = nil
-  Timecop.freeze(901.days.ago) do
+  travel_to(901.days.ago) do
     work1 = FactoryBot.create(:work, title: "Old work")
     FactoryBot.create(:bookmark,
                        bookmarkable_id: work1.id,
@@ -219,7 +219,7 @@ Given /^I have bookmarks of old series to search$/ do
   step %{the user "creator" exists and is activated}
   creator = User.find_by(login: "creator").default_pseud
 
-  Timecop.freeze(30.days.ago) do
+  travel_to(30.days.ago) do
     older_work = FactoryBot.create(:work, title: "WIP in a Series", authors: [creator])
     older_series = FactoryBot.create(:series, title: "Older WIP Series", works: [older_work])
     FactoryBot.create(:bookmark,
@@ -227,7 +227,7 @@ Given /^I have bookmarks of old series to search$/ do
                        bookmarkable_type: "Series")
   end
 
-  Timecop.freeze(7.days.ago) do
+  travel_to(7.days.ago) do
     newer_series = FactoryBot.create(:series_with_a_work, title: "Newer Complete Series")
     FactoryBot.create(:bookmark,
                        bookmarkable_id: newer_series.id,
