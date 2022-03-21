@@ -1,4 +1,5 @@
 if Rails.env.test?
-  WebMock.allow_net_connect!
-  WebMock.enable!
+  WebMock.disable_net_connect!(allow_localhost: true, allow: [
+    ArchiveConfig.ES_URL
+  ])
 end
