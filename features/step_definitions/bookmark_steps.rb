@@ -1,12 +1,10 @@
 Given /^mock websites with no content$/ do
-  WebMock.disable_net_connect!
   WebMock.stub_request(:head, "http://example.org/200")
   WebMock.stub_request(:head, "http://example.org/301").to_return(status: 301)
   WebMock.stub_request(:head, "http://example.org/404").to_return(status: 404)
 end
 
 Given "all pages on the host {string} return status 200" do |url|
-  WebMock.disable_net_connect!
   parsed_url = Addressable::URI.parse(url)
   WebMock.stub_request(:any, %r[https?://#{parsed_url.host}.*]).to_return(status: 200)
 end

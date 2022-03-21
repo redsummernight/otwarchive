@@ -33,9 +33,7 @@ module ApiHelper
     }
   end
 
-  # Let the test get at external sites, but stub out anything containing certain keywords
   def mock_external
-    WebMock.allow_net_connect!
     WebMock.stub_request(:any, /foo/).
       to_return(status: 200,
                 body:

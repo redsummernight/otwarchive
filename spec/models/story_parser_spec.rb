@@ -137,9 +137,6 @@ describe StoryParser do
 
   context "#download_and_parse_chapters_into_story" do
     it "should set the work revision date to the date of the last chapter" do
-
-      # Let the test get at external sites, but stub out anything containing "url1" and "url2"
-      WebMock.allow_net_connect!
       WebMock.stub_request(:any, /url1/).
         to_return(status: 200, body: "Date: 2001-01-10 13:45\nstubbed response", headers: {})
       WebMock.stub_request(:any, /url2/).
@@ -211,7 +208,6 @@ describe StoryParser do
     end
   end
 
-  # Let the test get at external sites, but stub out anything containing certain keywords
   def mock_external
     curly_quotes = "String with non-ASCII “Curly quotes” and apostrophes’"
 
@@ -228,8 +224,6 @@ describe StoryParser do
       Author's notes: #{curly_quotes}
 
       stubbed response".gsub('      ', '')
-
-    WebMock.allow_net_connect!
 
     WebMock.stub_request(:any, /ascii-8bit/).
       to_return(status: 200,
@@ -288,7 +282,6 @@ describe StoryParser do
       archivist = create(:archivist)
       User.current_user = archivist
 
-      WebMock.allow_net_connect!
       work = @sp.download_and_parse_story("http://rebecca2525.livejournal.com/3562.html", options)
 
       expect { work.save! }.to_not raise_exception
