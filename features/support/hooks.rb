@@ -1,6 +1,7 @@
 require "cucumber/rspec/doubles"
 require "cucumber/timecop"
 require "email_spec/cucumber"
+require "webmock/cucumber"
 
 Before do
   # Create default settings if necessary, since the database is truncated
