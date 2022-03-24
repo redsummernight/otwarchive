@@ -1,5 +1,3 @@
-PROFILER_SESSIONS_FILE = 'used_tags.txt'
-
 class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery with: :exception, prepend: true
