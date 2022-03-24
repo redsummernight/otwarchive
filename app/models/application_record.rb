@@ -1,4 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
+  include ActsAsCommentable::Commentable
+
   self.abstract_class = true
   self.per_page = ArchiveConfig.ITEMS_PER_PAGE
 
