@@ -95,7 +95,7 @@ class AbuseReport < ApplicationRecord
                                                  1.month.ago,
                                                  "%#{work_params_only}%").count
       if existing_reports_total >= ArchiveConfig.ABUSE_REPORTS_PER_WORK_MAX
-        errors[:base] << message
+        errors.add(:base, message)
       end
     elsif url =~ /\/users\/\w+/
       user_params_only = url.match(/\/users\/\w+\//).to_s
@@ -104,7 +104,7 @@ class AbuseReport < ApplicationRecord
                                                  1.month.ago,
                                                  "%#{user_params_only}%").count
       if existing_reports_total >= ArchiveConfig.ABUSE_REPORTS_PER_USER_MAX
-        errors[:base] << message
+        errors.add(:base, message)
       end
     end
   end
