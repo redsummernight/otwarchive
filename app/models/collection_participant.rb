@@ -1,6 +1,4 @@
 class CollectionParticipant < ApplicationRecord
-  include ActiveModel::ForbiddenAttributesProtection
-
   belongs_to :pseud
   has_one :user, through: :pseud
   belongs_to :collection

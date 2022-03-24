@@ -1,5 +1,4 @@
 class ChallengeSignup < ApplicationRecord
-  include ActiveModel::ForbiddenAttributesProtection
   include TagTypeHelper
 
   # -1 represents all matching

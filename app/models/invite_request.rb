@@ -1,5 +1,4 @@
 class InviteRequest < ApplicationRecord
-  include ActiveModel::ForbiddenAttributesProtection
   acts_as_list
   validates :email, presence: true, email_veracity: true
   validates_uniqueness_of :email, message: "is already part of our queue.", case_sensitive: false

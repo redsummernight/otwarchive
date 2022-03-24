@@ -1,6 +1,4 @@
 class ChallengeClaim < ApplicationRecord
-  include ActiveModel::ForbiddenAttributesProtection
-
   belongs_to :claiming_user, class_name: "User", inverse_of: :request_claims
   belongs_to :collection
   belongs_to :request_signup, class_name: "ChallengeSignup"

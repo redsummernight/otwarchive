@@ -2,7 +2,6 @@ require "unicode_utils/casefold"
 
 class Tag < ApplicationRecord
 
-  include ActiveModel::ForbiddenAttributesProtection
   include Searchable
   include StringCleaner
   include WorksOwner

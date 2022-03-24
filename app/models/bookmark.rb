@@ -1,6 +1,5 @@
 class Bookmark < ApplicationRecord
 
-  include ActiveModel::ForbiddenAttributesProtection
   include Collectible
   include Searchable
   include Responder

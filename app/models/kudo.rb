@@ -1,5 +1,4 @@
 class Kudo < ApplicationRecord
-  include ActiveModel::ForbiddenAttributesProtection
   include Responder
 
   belongs_to :user

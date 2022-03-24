@@ -1,5 +1,4 @@
 class KnownIssue < ApplicationRecord
-  include ActiveModel::ForbiddenAttributesProtection
   # why is this included here? FIXME?
   include HtmlCleaner
 

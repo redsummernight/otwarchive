@@ -1,6 +1,4 @@
 class AdminBlacklistedEmail < ApplicationRecord
-  include ActiveModel::ForbiddenAttributesProtection
-
   before_validation :canonicalize_email
 
   validates :email, presence: true, uniqueness: true, email_veracity: true

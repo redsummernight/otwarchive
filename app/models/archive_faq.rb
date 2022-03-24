@@ -1,6 +1,4 @@
 class ArchiveFaq < ApplicationRecord
-  include ActiveModel::ForbiddenAttributesProtection
-
   acts_as_list
   translates :title
   translation_class.include(Globalized)

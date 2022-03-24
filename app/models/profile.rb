@@ -1,6 +1,4 @@
 class Profile < ApplicationRecord
-  include ActiveModel::ForbiddenAttributesProtection
-
   PROFILE_TITLE_MAX = 255
   LOCATION_MAX = 255
   ABOUT_ME_MAX = 2000
