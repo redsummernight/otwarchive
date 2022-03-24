@@ -2,11 +2,9 @@ source 'https://rubygems.org'
 
 ruby '2.7.3'
 
-gem 'test-unit', '~> 3.2'
-
 gem 'bundler'
 
-gem "rails", "~> 6.0.4"
+gem "rails", "~> 6.1"
 gem "rails-i18n"
 gem "rack", "~> 2.1", ">= 2.1.4"
 gem "sprockets", "< 4"
@@ -56,7 +54,6 @@ gem "rest-client", "~> 2.1.0", require: "rest_client"
 gem 'resque', '>=1.14.0'
 gem 'resque-scheduler'
 gem 'after_commit_everywhere'
-#gem 'daemon-spawn', require: 'daemon_spawn'
 gem "elasticsearch", "7.16.1"
 gem "aws-sdk-s3"
 gem 'css_parser'
@@ -154,7 +151,6 @@ end
 
 group :development do
   gem 'factory_bot_rails'
-  gem 'bundler-audit'
   gem 'active_record_query_trace', '~> 1.6', '>= 1.6.1'
 end
 
