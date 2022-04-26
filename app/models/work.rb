@@ -1,4 +1,5 @@
 class Work < ApplicationRecord
+  include ActsAsCommentable::CommentableEntity
   include Filterable
   include CreationNotifier
   include Collectible
@@ -39,7 +40,6 @@ class Work < ApplicationRecord
   has_many :challenge_claims, as: :creation
   accepts_nested_attributes_for :challenge_claims
 
-  acts_as_commentable
   has_many :total_comments, class_name: 'Comment', through: :chapters
   has_many :kudos, as: :commentable, dependent: :destroy
 

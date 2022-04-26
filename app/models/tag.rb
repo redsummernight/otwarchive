@@ -1,8 +1,8 @@
 require "unicode_utils/casefold"
 
 class Tag < ApplicationRecord
-
   include ActiveModel::ForbiddenAttributesProtection
+  include ActsAsCommentable::CommentableEntity
   include Searchable
   include StringCleaner
   include WorksOwner
@@ -96,7 +96,6 @@ class Tag < ApplicationRecord
     tag.taggings_count = tag.taggings.count
   end
 
-  acts_as_commentable
   def commentable_name
     self.name
   end

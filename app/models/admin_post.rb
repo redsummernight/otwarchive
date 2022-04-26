@@ -1,9 +1,9 @@
 class AdminPost < ApplicationRecord
   include ActiveModel::ForbiddenAttributesProtection
+  include ActsAsCommentable::CommentableEntity
 
   self.per_page = 8 # option for WillPaginate
 
-  acts_as_commentable
   enum comment_permissions: {
     enable_all: 0,
     disable_anon: 1,

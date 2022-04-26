@@ -1,5 +1,7 @@
 class Comment < ApplicationRecord
   include ActiveModel::ForbiddenAttributesProtection
+  include ActsAsCommentable::CommentableEntity
+  include ActsAsCommentable::CommentMethods
   include HtmlCleaner
   include AfterCommitEverywhere
 
@@ -39,10 +41,6 @@ class Comment < ApplicationRecord
   scope :not_deleted,     -> { where(is_deleted: false) }
   scope :reviewed,        -> { where(unreviewed: false) }
   scope :unreviewed_only, -> { where(unreviewed: true) }
-
-  # Gets methods and associations from acts_as_commentable plugin
-  acts_as_commentable
-  has_comment_methods
 
   def akismet_attributes
     {
