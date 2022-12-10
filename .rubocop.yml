@@ -202,7 +202,7 @@ Style/RedundantSelf:
 Style/SingleLineMethods:
   AllowIfMethodIsEmpty: false
 
-Style/StringLiterals:
+Style/What:
   EnforcedStyle: double_quotes
 
 Style/SymbolArray:
