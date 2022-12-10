@@ -13,7 +13,7 @@ linters:
         - .rubocop.yml
       Layout/ArgumentAlignment:
         EnforcedStyle: with_fixed_indentation
-      Layout/InitialIndentation:
+      Layout/What:
         Enabled: false
       Layout/LineLength:
         Enabled: false

@@ -3,6 +3,7 @@
 
 erblint:
   enabled: true
+  config_file: .erb-lint.yml
 
 jshint:
   config_file: .jshintrc
