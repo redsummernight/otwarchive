@@ -19,10 +19,11 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
-      - name: Set up Ruby and run bundle install
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
+
+      - name: Install erb_lint
+        run: gem install erb_lint
 
       - name: Run linters
         uses: wearerequired/lint-action@v2
