@@ -4,17 +4,6 @@
 name: Brakeman Scan
 
 on:
-  push:
-    branches:
-      - master
-      - main
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches:
-      - master
-      - main
-  schedule:
-    - cron: '26 2 * * 1'
   workflow_dispatch:
 
 jobs:
