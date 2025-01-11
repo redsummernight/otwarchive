@@ -163,7 +163,7 @@ class ArchiveFaqsController < ApplicationController
 
   # Setting I18n.locale directly is not thread safe
   def with_locale
-    I18n.with_locale(@i18n_locale) { yield }
+    Mobility.with_locale(@i18n_locale) { yield }
   end
 
   # GET /archive_faqs/1/confirm_delete

@@ -17,7 +17,7 @@
     <div class="header">
       <h3 class="heading">
         Updated: <%= h @archive_faq.updated_at %>
-        <% if Globalize.locale.to_s != "en" || policy(ArchiveFaq).full_access? -%>
+        <% if !english? || policy(ArchiveFaq).full_access? -%>
           | <%= link_to t(".edit"), edit_archive_faq_path(@archive_faq) %>
         <% end %>
       </h3>

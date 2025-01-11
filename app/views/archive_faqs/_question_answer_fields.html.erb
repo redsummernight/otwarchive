@@ -42,12 +42,12 @@
       <dd>
         <%= form.text_field :screencast %>
       </dd>
-      <% if Globalize.locale.to_s != "en" %>
+      <% if !english? %>
         <dt><%= form.check_box :is_translated %></dt>
         <dd><%= form.label :is_translated, ts("Question translated") %></dd>
       <% end %>
     </dl>
-    <% if Globalize.locale.to_s == "en" %>
+    <% if english? %>
       <% # TODO: DELETE A QUESTION %>
       <p class="actions" role="button">
         <% removetext = ts("Remove Question") %>

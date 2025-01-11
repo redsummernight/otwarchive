@@ -16,8 +16,7 @@
                   method: :delete %>
     </li>
   <% end %>
-  <% if params[:controller] == "archive_faqs" && params[:action] == "edit" &&
-      Globalize.locale.to_s == "en" %>
+  <% if params[:controller] == "archive_faqs" && params[:action] == "edit" && english? %>
     <li>
       <%= link_to t(".faq.reorder_questions"), manage_archive_faq_questions_path(@archive_faq) %>
     </li>

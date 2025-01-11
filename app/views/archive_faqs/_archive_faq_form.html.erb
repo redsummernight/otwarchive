@@ -1,5 +1,5 @@
 <noscript>
-  <% if Globalize.locale.to_s == "en" %>
+  <% if english? %>
     <%= form_tag({}, {:method => :get}) do %>
       <fieldset>
         <legend><%= ts("Add Questions") %></legend>
@@ -44,7 +44,7 @@
         <%= render "question_answer_fields", form: question_form, index: index %>
       <% end %>
     <% end %>
-    <% if Globalize.locale.to_s == "en" %>
+    <% if english? %>
       <p class="actions" role="button">
         <%= link_to_add_section("Add Question", form, :questions, "question_answer_fields") %>
       </p>

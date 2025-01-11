@@ -6,7 +6,7 @@ module LanguageHelper
   end
 
   def rtl?
-    RTL_LOCALES.include?(Globalize.locale.to_s)
+    RTL_LOCALES.include?(Mobility.locale.to_s)
   end
 
   def rtl_language?(language)
@@ -14,7 +14,7 @@ module LanguageHelper
   end
 
   def english?
-    params[:language_id] == "en"
+    Mobility.locale.to_s == "en"
   end
 
   def translated_questions(all_questions)
