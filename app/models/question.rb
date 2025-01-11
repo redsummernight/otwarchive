@@ -6,9 +6,6 @@ class Question < ApplicationRecord
   translates :question, :content, :is_translated, :content_sanitizer_version
   translation_class.include(Globalized)
 
-  # Ignore the screencast_sanitizer_version field until it can be deleted:
-  translation_class.ignored_columns = [:screencast_sanitizer_version]
-
   belongs_to :archive_faq
 
   validates_presence_of :question, before: :create
