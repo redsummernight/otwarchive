@@ -82,10 +82,8 @@ gem 'timeliness'
 # for generating graphs
 gem 'google_visualr', git: 'https://github.com/winston/google_visualr'
 
-# Globalize for translations
-# Must use master branch and activemodel-serializers-xml for Rails 5 upgrade
-gem 'globalize', git: 'https://github.com/globalize/globalize'
-gem 'activemodel-serializers-xml'
+# For translated content e.g. admin posts, FAQs
+gem 'mobility'
 
 # Add a clean notifier that shows we are on dev or test
 gem 'rack-dev-mark', '>=0.7.8'
