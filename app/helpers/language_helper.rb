@@ -2,7 +2,8 @@ RTL_LOCALES = %w[ar fa he].freeze
 
 module LanguageHelper
   def available_faq_locales
-    ArchiveFaq.translated_locales.map { |code| Locale.find_by(iso: code) }
+    locales = ArchiveFaq::Translation.distinct.pluck(:locale)
+    Locale.default_order.where(iso: locales)
   end
 
   def rtl?

@@ -8,9 +8,10 @@ class ArchiveFaqsController < ApplicationController
 
   # GET /archive_faqs
   def index
-    @archive_faqs = ArchiveFaq.order("position ASC")
-    unless logged_in_as_admin?
-      @archive_faqs = @archive_faqs.with_translations(I18n.locale)
+    if logged_in_as_admin?
+      @archive_faqs = ArchiveFaq.order("position ASC")
+    else
+      @archive_faqs = ArchiveFaq::Translation.where(locale: I18n.locale)
     end
   end
 
