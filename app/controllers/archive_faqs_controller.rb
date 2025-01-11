@@ -12,12 +12,9 @@ class ArchiveFaqsController < ApplicationController
     unless logged_in_as_admin?
       @archive_faqs = @archive_faqs.with_translations(I18n.locale)
     end
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
 
-  # GET /archive_faqs/1
+  # GET /archive_faqs/<slug>
   def show
     @questions = []
     @archive_faq = ArchiveFaq.find_by!(slug: params[:id])
@@ -33,10 +30,6 @@ class ArchiveFaqsController < ApplicationController
       end
     end
     @page_subtitle = @archive_faq.title + ts(" FAQ")
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
   end
 
   protected
@@ -65,12 +58,9 @@ class ArchiveFaqsController < ApplicationController
   def new
     @archive_faq = authorize ArchiveFaq.new
     1.times { @archive_faq.questions.build(attributes: { question: "This is a temporary question", content: "This is temporary content", anchor: "ThisIsATemporaryAnchor"})}
-    respond_to do |format|
-      format.html # new.html.erb
-    end
   end
 
-  # GET /archive_faqs/1/edit
+  # GET /archive_faqs/<slug>/edit
   def edit
     @archive_faq = authorize ArchiveFaq.find_by(slug: params[:id])
     authorize :archive_faq, :full_access? if default_locale?
