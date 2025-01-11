@@ -9,7 +9,7 @@ Mobility.configure do
     # To default to a different backend globally, replace +:key_value+ by another
     # backend name.
     #
-    backend :key_value
+    backend :table
 
     # ActiveRecord
     #
@@ -53,7 +53,7 @@ Mobility.configure do
     # Dirty
     #
     # Uncomment this line to include and enable globally:
-    # dirty
+    dirty
     #
     # Or uncomment this line to include but disable by default, and only enable
     # per model by passing +dirty: true+ to +translates+.
@@ -70,7 +70,7 @@ Mobility.configure do
     # column_fallback
     #
     # Or uncomment this line to enable column fallback with a global default.
-    # column_fallback true
+    column_fallback true
 
     # Fallbacks
     #
