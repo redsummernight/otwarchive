@@ -1,5 +1,7 @@
 class ArchiveFaq < ApplicationRecord
   acts_as_list
+
+  extend Mobility
   translates :title
   translation_class.include(Globalized)
 
