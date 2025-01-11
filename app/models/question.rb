@@ -4,7 +4,7 @@ class Question < ApplicationRecord
   extend Mobility
   # The attributes that should be delegated to the translated class:
   translates :question, :content, :is_translated, :content_sanitizer_version
-  translation_class.include(Globalized)
+  Question::Translation.include(Globalized)
 
   belongs_to :archive_faq
 

@@ -3,7 +3,7 @@ class ArchiveFaq < ApplicationRecord
 
   extend Mobility
   translates :title
-  translation_class.include(Globalized)
+  ArchiveFaq::Translation.include(Globalized)
 
   has_many :questions, -> { order(:position) }, dependent: :destroy
   accepts_nested_attributes_for :questions, allow_destroy: true
